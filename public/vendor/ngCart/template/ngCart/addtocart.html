@@ -1,0 +1,18 @@
+<div ng-hide="attrs.id">
+    <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
+        ng-disabled="true" ng-transclude>
+    </button>
+</div>
+
+<div ng-show="attrs.id"></div>
+<span ng-show="quantityMax">
+    <select class="form-control" name="quantity" id="quantity" ng-model="q" ng-options=" v for v in qtyOpt"></select>
+</span>
+
+<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail mt-2"
+    ng-click="ngCart.addItem(id, name, price, q, data)" ng-transclude>
+</button>
+<mark ng-show="inCart()">
+    Sản phẩm đã có trong giỏ hàng. <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Xóa</a>
+</mark>
+</div>

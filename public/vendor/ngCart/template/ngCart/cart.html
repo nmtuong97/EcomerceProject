@@ -1,0 +1,117 @@
+<!-- Shoping Cart -->
+<form class="bg0 p-t-75 p-b-85 ngCart cart">
+    <div class="container">
+        <div class="row" ng-show="ngCart.getTotalItems() === 0">
+            <div class="col-lg-12 col-md-12">
+                <div class="alert alert-warning" role="alert">
+                    Giỏ hàng trống
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="ngCart.getTotalItems() > 0">
+            <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+                <div class="m-l-25 m-r--38 m-lr-0-xl">
+                    <div class="wrap-table-shopping-cart">
+                        <table class="table-shopping-cart">
+                            <tr class="table_head">
+                                <th class="column-1">Sản phẩm</th>
+                                <th class="column-2"></th>
+                                <th class="column-3">Đơn giá</th>
+                                <th class="column-4">Số lượng</th>
+                                <th class="column-5">Thành tiền</th>
+                                <th class="column-6">Hành động</th>
+                            </tr>
+
+                            <tr class="table_row" ng-repeat="item in ngCart.getCart().items track by $index">
+                                <td class="column-1">
+                                    <div class="how-itemcart1">
+                                        <img src="<% item.getData().sp_hinh_url %>" alt="IMG">
+                                    </div>
+                                </td>
+                                <td class="column-2"><% item.getName() %></td>
+                                <td class="column-3"><% item.getPrice() | currency %></td>
+                                <td class="column-4"><% item.getQuantity() | number %></td>
+                                <td class="column-5"><% item.getTotal() | currency %> </td>
+                                <td><span ng-click="ngCart.removeItemById(item.getId())"
+                                        class="glyphicon glyphicon-remove remove">Xóa</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+                <div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+                    <h4 class="mtext-109 cl2 p-b-30">
+                        Tính tiền giỏ hàng
+                    </h4>
+
+                    <div class="flex-w flex-t p-t-27 p-b-33">
+                        <!-- Thuế -->
+                        <div class="size-208" ng-show="ngCart.getTax()">
+                            <span class="mtext-101 cl2">
+                                Thuế (<% ngCart.getTaxRate() %>%):
+                            </span>
+                        </div>
+
+                        <div class="size-209 p-t-1" ng-show="ngCart.getTax()">
+                            <span class="mtext-110 cl2">
+                                <% ngCart.getTax() | currency %>
+                            </span>
+                        </div>
+
+                        <!-- Vận chuyển -->
+                        <div class="size-208" ng-show="ngCart.getShipping()">
+                            <span class="mtext-101 cl2">
+                                Vận chuyển
+                            </span>
+                        </div>
+
+                        <div class="size-209 p-t-1" ng-show="ngCart.getShipping()">
+                            <span class="mtext-110 cl2">
+                                <% ngCart.getShipping() | currency %>
+                            </span>
+                        </div>
+
+                        <!-- Tổng thành tiền -->
+                        <div class="size-208">
+                            <span class="mtext-101 cl2">
+                                Tổng thành tiền:
+                            </span>
+                        </div>
+
+                        <div class="size-209 p-t-1">
+                            <span class="mtext-110 cl2">
+                                <% ngCart.totalCost() | currency %>
+                            </span>
+                        </div>
+                    </div>
+
+                    <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                        Thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<style>
+    .ngCart.cart span[ng-click] {
+        cursor: pointer;
+    }
+
+    .ngCart.cart .glyphicon.disabled {
+        color: #aaa;
+    }
+
+    .ngCart.cart .title {
+        color: blue;
+        font-weight: bold;
+    }
+
+    .ngCart.cart .remove {
+        color: red;
+    }
+</style>

@@ -1,0 +1,120 @@
+/* --- Hacking multi pages sheet --- */
+.sheet {
+    overflow: visible;
+    height: auto !important;
+}
+
+.paper-toolbar {
+    margin: auto;
+    background: #0d8a05;
+    padding: 5px;
+    z-index: 999;
+}
+
+.paper-toolbar-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.paper-toolbar-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.paper-toolbar.paper-toolbar-A3 {
+    width: 297mm;
+}
+
+.paper-toolbar.paper-toolbar-A3.landscape {
+    width: 420mm;
+}
+
+.paper-toolbar.paper-toolbar-A4  {
+    width: 210mm;
+}
+
+.paper-toolbar.paper-toolbar-A4.landscape  {
+    width: 297mm;
+}
+
+.paper-toolbar.paper-toolbar-A5  {
+    width: 148mm;
+}
+
+.paper-toolbar.paper-toolbar-A5.landscape  {
+    width: 210mm;
+}
+
+.paper-toolbar.letter.sheet {
+    width: 216mm;
+}
+
+.paper-toolbar.letter.landscape.sheet {
+    width: 280mm;
+}
+
+.paper-toolbar.legal.sheet {
+    width: 216mm;
+}
+
+.paper-toolbar.legal.landscape.sheet {
+    width: 357mm;
+}
+
+@media print {
+    .paper-show-when-print {
+        display: block !important;
+    }
+
+    .paper-hide-when-print {
+        display: none !important;
+    }
+
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+
+    h2 { 
+        page-break-before: always;
+    }
+
+    h3, h4 {
+        page-break-after: avoid;
+    }
+
+    pre, blockquote {
+        page-break-inside: avoid;
+    }
+
+    .page-break-inside-avoid {
+        page-break-inside: avoid;
+    }
+
+    tbody {
+        page-break-inside: avoid;
+    }
+    
+    thead {
+        display: table-header-group;
+        margin-top: 100px;
+    }
+
+    table.report-container {
+        page-break-after:always;
+    }
+
+    thead.report-header {
+        display:table-header-group;
+    }
+
+    tfoot.report-footer {
+        display:table-footer-group;
+    } 
+}
+.logo {
+    width: 50px;
+    height: 50px;
+}

@@ -31,16 +31,16 @@
 <body class="animsition">
 
     <!-- Header -->
-    @include('admin.layouts.partials.header')
+    @include('khachhang.layouts.partials.header')
 
     <!-- Cart -->
-    @include('admin.layouts.partials.cart')
+    @include('khachhang.layouts.partials.cart')
 
     <!-- Content -->
     @yield('main-content')
 
     <!-- Footer -->
-    @include('admin.layouts.partials.footer')
+    @include('khachhang.layouts.partials.footer')
 
     <!-- Back to top -->
     <div class="btn-back-to-top" id="myBtn">

@@ -1,197 +1,197 @@
-<header class="header-v4">
-    <!-- Header desktop -->
-    <div class="container-menu-desktop">
-        <!-- Topbar -->
-        <div class="top-bar">
-            <div class="content-topbar flex-sb-m h-full container">
-                <div class="left-top-bar">
-                    Free shipping for standard order over $100
-                </div>
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                <div class="right-top-bar flex-w h-full">
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        Help & FAQs
-                    </a>
+<!-- Sidebar Toggle (Topbar) -->
+<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+    <i class="fa fa-bars"></i>
+</button>
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        My Account
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        EN
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        USD
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="wrap-menu-desktop">
-            <nav class="limiter-menu-desktop container">
-
-                <!-- Logo desktop -->
-                <a href="" class="logo">
-                    <img src="{{ asset('themes/cozastore/images/icons/logo-01.png') }}" alt="IMG-LOGO">
-                </a>
-
-                <!-- Menu desktop -->
-                <div class="menu-desktop">
-                    <ul class="main-menu">
-                        <li class="{{ Request::is('') ? 'active-menu' : '' }}">
-                            <a href="">Home</a>
-                        </li>
-
-                        <li>
-                            <a href="product.html">Shop</a>
-                        </li>
-
-                        <li class="label1" data-label1="hot">
-                            <a href="shoping-cart.html">Features</a>
-                        </li>
-
-                        <li>
-                            <a href="blog.html">Blog</a>
-                        </li>
-
-                        <li class="{{ Request::is('gioi-thieu') ? 'active-menu' : '' }}">
-                            <a href="">About</a>
-                        </li>
-
-                        <li class="{{ Request::is('lien-he') ? 'active-menu' : '' }}">
-                            <a href="">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Icon header -->
-                <div class="wrap-icon-header flex-w flex-r-m">
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-                        <i class="zmdi zmdi-search"></i>
-                    </div>
-
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-                        <i class="zmdi zmdi-shopping-cart"></i>
-                    </div>
-
-                    <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
-                        <i class="zmdi zmdi-favorite-outline"></i>
-                    </a>
-                </div>
-            </nav>
-        </div>
-    </div>
-
-    <!-- Header Mobile -->
-    <div class="wrap-header-mobile">
-        <!-- Logo moblie -->
-        <div class="logo-mobile">
-            <a href="index.html"><img src="{{ asset('themes/cozastore/images/icons/logo-01.png') }}" alt="IMG-LOGO"></a>
-        </div>
-
-        <!-- Icon header -->
-        <div class="wrap-icon-header flex-w flex-r-m m-r-15">
-            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-                <i class="zmdi zmdi-search"></i>
-            </div>
-
-            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-                <i class="zmdi zmdi-shopping-cart"></i>
-            </div>
-
-            <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-                <i class="zmdi zmdi-favorite-outline"></i>
-            </a>
-        </div>
-
-        <!-- Button show menu -->
-        <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-            <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-            </span>
-        </div>
-    </div>
-
-
-    <!-- Menu Mobile -->
-    <div class="menu-mobile">
-        <ul class="topbar-mobile">
-            <li>
-                <div class="left-top-bar">
-                    Free shipping for standard order over $100
-                </div>
-            </li>
-
-            <li>
-                <div class="right-top-bar flex-w h-full">
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        Help & FAQs
-                    </a>
-
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        My Account
-                    </a>
-
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        EN
-                    </a>
-
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        USD
-                    </a>
-                </div>
-            </li>
-        </ul>
-
-        <ul class="main-menu-m">
-            <li>
-                <a href="index.html">Home</a>
-                <ul class="sub-menu-m">
-                    <li><a href="index.html">Homepage 1</a></li>
-                    <li><a href="home-02.html">Homepage 2</a></li>
-                    <li><a href="home-03.html">Homepage 3</a></li>
-                </ul>
-                <span class="arrow-main-menu-m">
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                </span>
-            </li>
-
-            <li>
-                <a href="#">Shop</a>
-            </li>
-
-            <li>
-                <a href="#" class="label1 rs1" data-label1="hot">Features</a>
-            </li>
-
-            <li>
-                <a href="#">Blog</a>
-            </li>
-
-            <li>
-                <a href="#">About</a>
-            </li>
-
-            <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
-    </div>
-
-    <!-- Modal Search -->
-    <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-        <div class="container-search-header">
-            <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                <img src="{{ asset('themes/cozastore/images/icons/icon-close2.png') }}" alt="CLOSE">
+<!-- Topbar Search -->
+<form
+    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+        <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm"
+            aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+                <i class="fas fa-search fa-sm"></i>
             </button>
+        </div>
+    </div>
+</form>
 
-            <form class="wrap-search-header flex-w p-l-15">
-                <button class="flex-c-m trans-04">
-                    <i class="zmdi zmdi-search"></i>
-                </button>
-                <input class="plh3" type="text" name="search" placeholder="Search...">
+<!-- Topbar Navbar -->
+<ul class="navbar-nav ml-auto">
+
+    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+    <li class="nav-item dropdown no-arrow d-sm-none">
+        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-search fa-fw"></i>
+        </a>
+        <!-- Dropdown - Messages -->
+        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+            aria-labelledby="searchDropdown">
+            <form class="form-inline mr-auto w-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small"
+                        placeholder="Tìm kiếm" aria-label="Search"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
-    </div>
-</header>
+    </li>
+
+    <!-- Nav Item - Alerts -->
+    <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            <!-- Counter - Alerts -->
+            <span class="badge badge-danger badge-counter">3+</span>
+        </a>
+        <!-- Dropdown - Alerts -->
+        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+            aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">
+                Alerts Center
+            </h6>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="small text-gray-500">December 12, 2019</div>
+                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                        <i class="fas fa-donate text-white"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    $290.29 has been deposited into your account!
+                </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="mr-3">
+                    <div class="icon-circle bg-warning">
+                        <i class="fas fa-exclamation-triangle text-white"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="small text-gray-500">December 2, 2019</div>
+                    Spending Alert: We've noticed unusually high spending for your account.
+                </div>
+            </a>
+            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+        </div>
+    </li>
+
+    <!-- Nav Item - Messages -->
+    <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-envelope fa-fw"></i>
+            <!-- Counter - Messages -->
+            <span class="badge badge-danger badge-counter">7</span>
+        </a>
+        <!-- Dropdown - Messages -->
+        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+            aria-labelledby="messagesDropdown">
+            <h6 class="dropdown-header">
+                Message Center
+            </h6>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                        alt="">
+                    <div class="status-indicator bg-success"></div>
+                </div>
+                <div class="font-weight-bold">
+                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                        problem I've been having.</div>
+                    <div class="small text-gray-500">Emily Fowler · 58m</div>
+                </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                        alt="">
+                    <div class="status-indicator"></div>
+                </div>
+                <div>
+                    <div class="text-truncate">I have the photos that you ordered last month, how
+                        would you like them sent to you?</div>
+                    <div class="small text-gray-500">Jae Chun · 1d</div>
+                </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                        alt="">
+                    <div class="status-indicator bg-warning"></div>
+                </div>
+                <div>
+                    <div class="text-truncate">Last month's report looks great, I am very happy with
+                        the progress so far, keep up the good work!</div>
+                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                        alt="">
+                    <div class="status-indicator bg-success"></div>
+                </div>
+                <div>
+                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                        told me that people say this to all dogs, even if they aren't good...</div>
+                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                </div>
+            </a>
+            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+        </div>
+    </li>
+
+    <div class="topbar-divider d-none d-sm-block"></div>
+
+    <!-- Nav Item - User Information -->
+    <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small">admin</span>
+            <img class="img-profile rounded-circle"
+                src="img/undraw_profile.svg">
+        </a>
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+            aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="#">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                Thông tin người dùng
+            </a>
+            <a class="dropdown-item" href="#">
+                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                Lịch sử đăng nhập
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Thoát
+            </a>
+        </div>
+    </li>
+
+</ul>
+
+</nav>

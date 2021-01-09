@@ -1,4 +1,4 @@
-@extends('khachhang.layouts.master')
+@extends('admin.layouts.master')
 
 @section('title')
     Danh sách sản phẩm

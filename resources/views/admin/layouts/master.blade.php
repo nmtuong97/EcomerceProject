@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield('title')</title>
+    <title>Quản lý || @yield('title')</title>
     <!-- Custom fonts for this template-->
     <link href="{{ asset ('themes/admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset ('themes/admin/css/google_font.css')}}" rel="stylesheet" type="text/css">
@@ -36,8 +36,8 @@
             <!-- end page content -->
             </div>
 
-            <!-- Footer -->
-            @include('admin.partials.footer')
+            <!-- Footer bỏ include footer-->
+            <!-- include('admin.partials.footer') -->
             <!-- End of Footer -->
         </div>
 

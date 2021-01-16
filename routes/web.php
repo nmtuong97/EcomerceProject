@@ -20,3 +20,5 @@ Route::get('/', [HomeController::class, 'index'])->name('khachhang.index');
 Route::get('/admin', function () {
     return view('admin.index');
 })->name('admin.index');
+
+Route::get('/admin/loaisanpham', 'App\Http\Controllers\Backend\loaisanphamController@index')->name('loaisanpham.index');

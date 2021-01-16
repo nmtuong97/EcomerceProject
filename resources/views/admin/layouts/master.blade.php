@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
 
@@ -12,8 +12,26 @@
     <title>Quản lý || @yield('title')</title>
     <!-- Custom fonts for this template-->
     <link href="{{ asset ('themes/admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+
+    <link href="{{ asset ('themes/admin/vendor/datatables/bootstrap.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset ('themes/admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset ('themes/admin/vendor/datatables/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
+    
     <link href="{{ asset ('themes/admin/css/google_font.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset ('themes/admin/css/sb-admin-2.min.css')}}" rel="stylesheet" type="text/css">
+    
+    <script src="{{ asset('themes/admin/vendor/datatables/jquery.js')}}"></script>
+    <script src="{{ asset('themes/admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('themes/admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('themes/admin/vendor/datatables/dataTables.responsive.min.js')}}"></script>
+    <script src="{{ asset('themes/admin/vendor/datatables/responsive.bootstrap4.min.js')}}"></script>
+    
+    
+    <script src="{{ asset ('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('themes/admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('themes/admin/js/sb-admin-2.min.js')}}"></script>
+  
+
     @yield('custom-css')
    
 </head>
@@ -69,7 +87,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset ('vendor/jquery/jquery.js') }}"></script>
+    <!--<script src="{{ asset ('vendor/jquery/jquery.js') }}"></script>-->
     <script src="{{ asset ('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
@@ -79,11 +97,17 @@
     <script src="{{ asset('themes/admin/js/sb-admin-2.min.js')}}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{ asset('themes/admin/vendor/chart.js/Chart.min.js') }}"></script>
+    <!--<script src="{{ asset('themes/admin/vendor/chart.js/Chart.min.js') }}"></script>-->
+<!--    <script src="{{ asset('themes/admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('themes/admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('themes/admin/vendor/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('themes/admin/vendor/datatables/responsive.bootstrap4.min.js') }}"></script>-->
+
 
     <!-- Page level custom scripts -->
-    <script src="{{ asset('themes/admin/js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{ asset('themes/admin/js/demo/chart-pie-demo.js')}}"></script>
+    <!--<script src="{{ asset('themes/admin/js/demo/datatables-demo.js')}}"></script>-->
+    <!--<script src="js/demo/datatables-demo.js"></script>-->
+    
 
 </body>
 

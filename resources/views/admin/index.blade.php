@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    Danh sách sản phẩm
+    Quản lý cửa hàng
 @endsection

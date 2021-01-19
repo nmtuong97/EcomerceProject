@@ -19,6 +19,7 @@
     
     <link href="{{ asset ('themes/admin/css/google_font.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset ('themes/admin/css/sb-admin-2.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset ('custom/css/custom.css')}}" rel="stylesheet" type="text/css">
     
     <script src="{{ asset('themes/admin/vendor/datatables/jquery.js')}}"></script>
     <script src="{{ asset('themes/admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
@@ -30,7 +31,7 @@
     <script src="{{ asset ('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('themes/admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('themes/admin/js/sb-admin-2.min.js')}}"></script>
-  
+    
 
     @yield('custom-css')
    
@@ -95,20 +96,43 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('themes/admin/js/sb-admin-2.min.js')}}"></script>
-
-    <!-- Page level plugins -->
-    <!--<script src="{{ asset('themes/admin/vendor/chart.js/Chart.min.js') }}"></script>-->
-<!--    <script src="{{ asset('themes/admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('themes/admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('themes/admin/vendor/datatables/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('themes/admin/vendor/datatables/responsive.bootstrap4.min.js') }}"></script>-->
-
-
-    <!-- Page level custom scripts -->
-    <!--<script src="{{ asset('themes/admin/js/demo/datatables-demo.js')}}"></script>-->
-    <!--<script src="js/demo/datatables-demo.js"></script>-->
+    <script src="{{ asset('vendor/CustomJs/CustomJs.js') }}"></script>
+    <script src="{{ asset('vendor/sweetalert/sweetalert.js') }}"></script>
+    <script src="{{ asset('vendor/Inputmask/dist/jquery.inputmask.min.js') }}"></script>
+    <script src="{{ asset('vendor/Inputmask/dist/bindings/inputmask.binding.js') }}"></script>
+    <script src="{{ asset('vendor/CustomJs/CustomJs.js') }}"></script>
     
-
+    
 </body>
 
 </html>
+
+<script>
+    //script for datatable
+    $( document ).ready(function() { 
+        $('#dataTable').DataTable( {
+            responsive: true,
+            fixedHeader: true,
+            "language": {
+                "lengthMenu": "Hiển thị _MENU_ dòng trên trang",
+                "zeroRecords": "Không tìm thấy dữ liệu",
+                "info": "Trang _PAGE_ trên tổng _PAGES_ trang",
+                "infoEmpty": "Không có dữ liệu",
+                "search":         "Tìm kiếm:",
+                "infoFiltered": "(filtered from _MAX_ total records)",
+                "paginate": {
+                    "first":      "Trang đầu",
+                    "last":       "Trang cuối",
+                    "next":       "Trang sau",
+                    "previous":   "Trang trước"
+                },
+                "loadingRecords": "Đang tìm kiếm...",
+                "processing":     "Đang xử lý...",
+        }
+        } );
+        
+        @if (Session::has('sussecs'))
+            showSuccessNotification('{{Session::get('sussecs')}}'); 
+        @endif
+    });
+</script>

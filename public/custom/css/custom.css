@@ -1,0 +1,8 @@
+input.require-row {
+    padding-right: 0px!important;
+    background: url("../../storage/style/notered.png") no-repeat scroll 98% 4% #FFFFFF;
+}
+
+.function:hover{
+    cursor: pointer;
+}

@@ -25,3 +25,7 @@ function showErorNotification(notification = null){
             timer: 2000
           });
 }
+
+function ClearErrorMessage(){
+    $('#error-message').remove();
+}

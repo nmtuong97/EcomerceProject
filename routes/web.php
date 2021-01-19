@@ -22,3 +22,8 @@ Route::get('/admin', function () {
 })->name('admin.index');
 
 Route::get('/admin/loaisanpham', 'App\Http\Controllers\Backend\loaisanphamController@index')->name('loaisanpham.index');
+Route::post('admin/loaisanpham/store', 'App\Http\Controllers\Backend\loaisanphamController@store')->name('loaisanpham.store');
+//route get info edit loại sản phẩm
+Route::get('admin/loaisanpham/infoLoaiSanPham', 'App\Http\Controllers\Backend\loaisanphamController@getinfo')->name('loaisanpham.info');
+Route::put('admin/loaisanpham/update/{id}', 'App\Http\Controllers\Backend\loaisanphamController@update')->name('loaisanpham.update');
+Route::DELETE('admin/loaisanpham/destroy/{id}', 'App\Http\Controllers\Backend\loaisanphamController@destroy')->name('loaisanpham.destroy');

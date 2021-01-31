@@ -14,15 +14,18 @@
                     </a>
 
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        My Account
+                        Tài khoản
                     </a>
 
+                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                        VN
+                    </a>
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
                         EN
                     </a>
 
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        USD
+                        VND
                     </a>
                 </div>
             </div>
@@ -33,18 +36,18 @@
 
                 <!-- Logo desktop -->
                 <a href="" class="logo">
-                    <img src="{{ asset('themes/cozastore/images/icons/logo-01.png') }}" alt="IMG-LOGO">
+                    <img src="{{ asset('storage/logo/logo-01.png') }}" alt="IMG-LOGO">
                 </a>
 
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li class="{{ Request::is('') ? 'active-menu' : '' }}">
-                            <a href="">Home</a>
+                            <a href="">Trang chủ</a>
                         </li>
 
                         <li>
-                            <a href="product.html">Shop</a>
+                            <a href="product.html">Mua sắm</a>
                         </li>
 
                         <li class="label1" data-label1="hot">

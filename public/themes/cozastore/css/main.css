@@ -151,7 +151,10 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     transform: scale(1);
     opacity: 0; } 
 }
-
+.sp_avatar{
+      height: 330px;
+      width: auto;
+  }
 /*//////////////////////////////////////////////////////////////////
 [ BUTTON BACK TO TOP ]*/
 .btn-back-to-top {
@@ -3328,5 +3331,5 @@ input.num-product::-webkit-inner-spin-button {
   .respon3 {
     padding: 20px;
   }
-
+  
 }

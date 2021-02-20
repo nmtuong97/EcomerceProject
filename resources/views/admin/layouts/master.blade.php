@@ -29,6 +29,7 @@
     
     
     <script src="{{ asset ('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset ('vendor/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
     <script src="{{ asset('themes/admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('themes/admin/js/sb-admin-2.min.js')}}"></script>
     
@@ -110,9 +111,34 @@
 <script>
     //script for datatable
     $( document ).ready(function() { 
+        
+        $('.tien-te').inputmask({
+            alias: 'currency',
+            positionCaretOnClick: "radixFocus",
+            radixPoint: ".",
+            _radixDance: true,
+            numericInput: true,
+            groupSeparator: ",",
+            suffix: ' VNĐ',
+            min: 0,         // 0 ngàn
+            max: 1000000000, // 1 tỷ
+            autoUnmask: true,
+            removeMaskOnSubmit: true,
+            unmaskAsNumber: true,
+            inputtype: 'text',
+            placeholder: "0",
+            definitions: {
+              "0": {
+                validator: "[0-9\uFF11-\uFF19]"
+              }
+            }
+          });
+        
         $('#dataTable').DataTable( {
             responsive: true,
             fixedHeader: true,
+            "lengthMenu": [[1, 5, 10, 25, 50, -1], [1, 5, 10, 25, 50, "Tất cả"]],
+            "pageLength": 5,
             "language": {
                 "lengthMenu": "Hiển thị _MENU_ dòng trên trang",
                 "zeroRecords": "Không tìm thấy dữ liệu",

@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    Danh sách loại sản phẩm
+    Danh sách nhà cung cấp
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary" align="center">Danh sách loại sản phẩm</h6>
+                            <h6 class="m-0 font-weight-bold text-primary" align="center">Danh sách nhà cung cấp</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -47,12 +47,12 @@
                                         @foreach ($data as $k => $v)
                                         <tr>
                                             <td align="center" style="font-weight: bold;">{{ $k + 1 }}</td>
-                                            <td>{{ $v->loai_san_pham_ma }}</td>
-                                            <td>{{ $v->loai_san_pham_ten_vn }}</td>
-                                            <td>{{ $v->loai_san_pham_ten_eng }}</td>
-                                            <td align="center" width="5%"><i class="fas fa-pen function" style="color:blue" title="Sửa" onclick="prepareEdit({{ $v->loai_san_pham_id }}, '{{ route('loaisanpham.update', ['id' => $v->loai_san_pham_id])}}')"></i></td>
+                                            <td>{{ $v->ncc_ma }}</td>
+                                            <td>{{ $v->ncc_ten_vn }}</td>
+                                            <td>{{ $v->ncc_ten_en }}</td>
+                                            <td align="center" width="5%"><i class="fas fa-pen function" style="color:blue" title="Sửa" onclick="prepareEdit({{ $v->ncc_id }}, '{{ route('nhacungcap.update', ['id' => $v->ncc_id])}}')"></i></td>
                                             <td align="center" width="5%">
-                                                <form name="frmXoa" method="POST" action="{{route('loaisanpham.destroy',['id' => $v->loai_san_pham_id])}}"  class="delete-form" data-id = "{{ $v->loai_san_pham_id }}">
+                                                <form name="frmXoa" method="POST" action="{{route('nhacungcap.destroy',['id' => $v->ncc_id])}}"  class="delete-form" data-id = "{{ $v->ncc_id }}">
                                                     {{ csrf_field() }}
                                                     <input type="hidden" name="_method" value="DELETE" />
                                                     <button type="submit" class="btn btn-link" ><i class="fas fa-trash-alt function" style="color:red"></i></button>
@@ -76,7 +76,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modal_title">Thêm mới loại sản phẩm</h5>
+        <h5 class="modal-title" id="modal_title">Thêm mới nhà cung cấp</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -84,24 +84,24 @@
         @include('admin.partials.error-message')
       <div class="modal-body">
         <!--form-->
-        <form name="frmMain" id = "frmMain" method="POST" action="{{ route('loaisanpham.store') }}">
+        <form name="frmMain" id = "frmMain" method="POST" action="{{ route('nhacungcap.store') }}">
             {{ csrf_field() }}
             <div class="form-group row">
-                <label for="loai_san_pham_ma" class="col-sm-2 col-form-label">Mã</label>
+                <label for="ncc_ma" class="col-sm-2 col-form-label">Mã</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control require-row" value="{{ old('loai_san_pham_ma') }}" name="loai_san_pham_ma" id="loai_san_pham_ma" placeholder="VD: SP001" >
+                    <input type="text" class="form-control require-row" value="{{ old('ncc_ma') }}" name="ncc_ma" id="ncc_ma" placeholder="VD: GC, ADIDAS,..." >
                 </div>
             </div>  
             <div class="form-group row">
-                <label for="loai_san_pham_ten_vn" class="col-sm-2 col-form-label">Tên tiếng việt</label>
+                <label for="ncc_ten_vn" class="col-sm-2 col-form-label">Tên tiếng việt</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control require-row" value="{{ old('loai_san_pham_ten_vn') }}" name="loai_san_pham_ten_vn" id="loai_san_pham_ten_vn" placeholder="VD: Giày dép nam">
+                    <input type="text" class="form-control require-row" value="{{ old('ncc_ten_vn') }}" name="ncc_ten_vn" id="ncc_ten_vn" placeholder="VD: GUCCI, ADIDAS, PUMA,...">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="loai_san_pham_ten_en" class="col-sm-2 col-form-label">Tên tiếng anh</label>
+                <label for="ncc_ten_en" class="col-sm-2 col-form-label">Tên tiếng anh</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{ old('loai_san_pham_ten_en') }}" name="loai_san_pham_ten_en" id="loai_san_pham_ten_en" placeholder="Example: Men's shoes">
+                    <input type="text" class="form-control" value="{{ old('ncc_ten_en') }}" name="ncc_ten_en" id="ncc_ten_en" placeholder="Example: GUCCI, ADIDAS...">
                 </div>
             </div>
             <!--end form-->
@@ -142,7 +142,7 @@
                     data: $(this).serialize(),
                     success: function () {
                         Swal.fire(
-                            'Xóa!',
+                            'Thành công!',
                             'Bạn đã xóa thành công.',
                             'success'
                           ),
@@ -158,12 +158,12 @@
         
         function prepareAdd(){
             ClearErrorMessage();
-            $('#loai_san_pham_ma').val('').attr('disabled', false);
-            $('#loai_san_pham_ten_vn').val('');
-            $('#loai_san_pham_ten_en').val('');
+            $('#ncc_ma').val('').attr('disabled', false);
+            $('#ncc_ten_vn').val('');
+            $('#ncc_ten_en').val('');
             $('imput[name ="_method"]').val();
             $('#_method').remove();
-            $('#frmMain').attr('action', '{{ route('loaisanpham.store') }}');
+            $('#frmMain').attr('action', '{{ route('nhacungcap.store') }}');
             $('#modal').modal('show');
         }
         
@@ -172,7 +172,7 @@
             ClearErrorMessage();
             if (id !== '') {
                 $.ajax({
-                url: '{{ route('loaisanpham.info') }}',
+                url: '{{ route('nhacungcap.info') }}',
                 type: "GET",
                 data: {
                     id: id
@@ -180,12 +180,12 @@
                 success: function(response) {
                     $(response.data).each(function() {
                         var data = response.data;
-                        $('#modal_title').text('Sửa loại sản phẩn');
-                        $('#loai_san_pham_ma').val(data.loai_san_pham_ma).attr('disabled', true);
-                        $('#loai_san_pham_ten_vn').val(data.loai_san_pham_ten_vn);
-                        $('#loai_san_pham_ten_en').val(data.loai_san_pham_ten_en);
+                        $('#modal_title').text('Sửa nhà cung cấp');
+                        $('#ncc_ma').val(data.ncc_ma).attr('disabled', true);
+                        $('#ncc_ten_vn').val(data.ncc_ten_vn);
+                        $('#ncc_ten_en').val(data.ncc_ten_en);
                         if ($('#_method').length === 0) {                          
-                            $('#loai_san_pham_ten_en').after('<input id = "_method" type="hidden" name="_method" value="PUT" />');
+                            $('#ncc_ten_en').after('<input id = "_method" type="hidden" name="_method" value="PUT" />');
                         }
                         $('#frmMain').attr('action', action);
                         $('#modal').modal('show');

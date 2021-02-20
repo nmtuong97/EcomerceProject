@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    Danh sách loại sản phẩm
+    Danh sách đơn vị vận chuyển
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary" align="center">Danh sách loại sản phẩm</h6>
+                            <h6 class="m-0 font-weight-bold text-primary" align="center">Danh sách đơn vị vận chuyển</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -28,6 +28,8 @@
                                             <th width ="15%">Mã</th>
                                             <th>Tên</th>
                                             <th>Tên tiếng anh</th>
+                                            <th style="white-space: nowrap;">Giá gốc</th>
+                                            <th style="white-space: nowrap;">Giá</th>
                                             <th>Sửa</th>
                                             <th>Xóa</th>
                                         </tr>
@@ -47,12 +49,15 @@
                                         @foreach ($data as $k => $v)
                                         <tr>
                                             <td align="center" style="font-weight: bold;">{{ $k + 1 }}</td>
-                                            <td>{{ $v->loai_san_pham_ma }}</td>
-                                            <td>{{ $v->loai_san_pham_ten_vn }}</td>
-                                            <td>{{ $v->loai_san_pham_ten_eng }}</td>
-                                            <td align="center" width="5%"><i class="fas fa-pen function" style="color:blue" title="Sửa" onclick="prepareEdit({{ $v->loai_san_pham_id }}, '{{ route('loaisanpham.update', ['id' => $v->loai_san_pham_id])}}')"></i></td>
+                                            <td>{{ $v->don_vi_van_chuyen_ma }}</td>
+                                            <td>{{ $v->don_vi_van_chuyen_ten_vn }}</td>
+                                            <td>{{ $v->don_vi_van_chuyen_ten_en }}</td>
+                                            <td class="tien-te">{{ $v->don_vi_van_chuyen_gia_goc }}</td>
+                                            <td class="tien-te">{{ $v->don_vi_van_chuyen_gia }}</td>
+
+                                            <td align="center" width="5%"><i class="fas fa-pen function" style="color:blue" title="Sửa" onclick="prepareEdit({{ $v->don_vi_van_chuyen_id }}, '{{ route('donvivanchuyen.update', ['id' => $v->don_vi_van_chuyen_id])}}')"></i></td>
                                             <td align="center" width="5%">
-                                                <form name="frmXoa" method="POST" action="{{route('loaisanpham.destroy',['id' => $v->loai_san_pham_id])}}"  class="delete-form" data-id = "{{ $v->loai_san_pham_id }}">
+                                                <form name="frmXoa" method="POST" action="{{route('donvivanchuyen.destroy',['id' => $v->don_vi_van_chuyen_id])}}"  class="delete-form" data-id = "{{ $v->don_vi_van_chuyen_id }}">
                                                     {{ csrf_field() }}
                                                     <input type="hidden" name="_method" value="DELETE" />
                                                     <button type="submit" class="btn btn-link" ><i class="fas fa-trash-alt function" style="color:red"></i></button>
@@ -70,13 +75,12 @@
 
 <!-- Button trigger modal -->
 
-
 <!-- Modal them moi-->
 <div class="modal fade " id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modal_title">Thêm mới loại sản phẩm</h5>
+        <h5 class="modal-title" id="modal_title">Thêm mới đơn vị vận chuyển</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -84,24 +88,36 @@
         @include('admin.partials.error-message')
       <div class="modal-body">
         <!--form-->
-        <form name="frmMain" id = "frmMain" method="POST" action="{{ route('loaisanpham.store') }}">
+        <form name="frmMain" id = "frmMain" method="POST" action="{{ route('donvivanchuyen.store') }}">
             {{ csrf_field() }}
-            <div class="form-group row">
-                <label for="loai_san_pham_ma" class="col-sm-2 col-form-label">Mã</label>
+             <div class="form-group row">
+                <label for="don_vi_van_chuyen_ma" class="col-sm-2 col-form-label">Mã</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control require-row" value="{{ old('loai_san_pham_ma') }}" name="loai_san_pham_ma" id="loai_san_pham_ma" placeholder="VD: SP001" >
+                    <input type="text" class="form-control require-row" value="{{ old('don_vi_van_chuyen_ma') }}" name="don_vi_van_chuyen_ma" id="don_vi_van_chuyen_ma" placeholder="VD: GHN, GHTK..." >
                 </div>
             </div>  
             <div class="form-group row">
-                <label for="loai_san_pham_ten_vn" class="col-sm-2 col-form-label">Tên tiếng việt</label>
+                <label for="don_vi_van_chuyen_ten_vn" class="col-sm-2 col-form-label">Tên tiếng việt</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control require-row" value="{{ old('loai_san_pham_ten_vn') }}" name="loai_san_pham_ten_vn" id="loai_san_pham_ten_vn" placeholder="VD: Giày dép nam">
+                    <input type="text" class="form-control require-row" value="{{ old('don_vi_van_chuyen_ten_vn') }}" name="don_vi_van_chuyen_ten_vn" id="don_vi_van_chuyen_ten_vn" placeholder="VD: Giao hàng nhanh, giao hàng tiết kiệm...">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="loai_san_pham_ten_en" class="col-sm-2 col-form-label">Tên tiếng anh</label>
+                <label for="don_vi_van_chuyen_ten_en" class="col-sm-2 col-form-label">Tên tiếng anh</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{ old('loai_san_pham_ten_en') }}" name="loai_san_pham_ten_en" id="loai_san_pham_ten_en" placeholder="Example: Men's shoes">
+                    <input type="text" class="form-control" value="{{ old('don_vi_van_chuyen_ten_en') }}" name="don_vi_van_chuyen_ten_en" id="don_vi_van_chuyen_ten_en" placeholder="Example: GHN, GHTK">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="don_vi_van_chuyen_gia_goc" class="col-sm-2 col-form-label">Giá gốc</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control tien-te require-row" value="{{ old('don_vi_van_chuyen_gia_goc') }}" name="don_vi_van_chuyen_gia_goc" id="don_vi_van_chuyen_gia_goc" placeholder="VNĐ">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="don_vi_van_chuyen_gia" class="col-sm-2 col-form-label">Giá</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control tien-te require-row" value="{{ old('don_vi_van_chuyen_gia') }}" name="don_vi_van_chuyen_gia" id="don_vi_van_chuyen_gia" placeholder="VNĐ">
                 </div>
             </div>
             <!--end form-->
@@ -120,7 +136,7 @@
 @section('custom-scripts')
 <script>
     
-        $( document ).ready(function() { 
+        $( document ).ready(function() {   
         @if ($errors->any())
             $('#modal').modal('show');
         @endif
@@ -142,7 +158,7 @@
                     data: $(this).serialize(),
                     success: function () {
                         Swal.fire(
-                            'Xóa!',
+                            'Thành công!',
                             'Bạn đã xóa thành công.',
                             'success'
                           ),
@@ -158,12 +174,14 @@
         
         function prepareAdd(){
             ClearErrorMessage();
-            $('#loai_san_pham_ma').val('').attr('disabled', false);
-            $('#loai_san_pham_ten_vn').val('');
-            $('#loai_san_pham_ten_en').val('');
+            $('#don_vi_van_chuyen_ma').val('').attr('disabled', false);
+            $('#don_vi_van_chuyen_ten_vn').val('');
+            $('#don_vi_van_chuyen_ten_en').val('');
+            $('#don_vi_van_chuyen_gia_goc').val('');
+            $('#don_vi_van_chuyen_gia').val('');
             $('imput[name ="_method"]').val();
             $('#_method').remove();
-            $('#frmMain').attr('action', '{{ route('loaisanpham.store') }}');
+            $('#frmMain').attr('action', '{{ route('donvivanchuyen.store') }}');
             $('#modal').modal('show');
         }
         
@@ -172,7 +190,7 @@
             ClearErrorMessage();
             if (id !== '') {
                 $.ajax({
-                url: '{{ route('loaisanpham.info') }}',
+                url: '{{ route('donvivanchuyen.info') }}',
                 type: "GET",
                 data: {
                     id: id
@@ -180,12 +198,14 @@
                 success: function(response) {
                     $(response.data).each(function() {
                         var data = response.data;
-                        $('#modal_title').text('Sửa loại sản phẩn');
-                        $('#loai_san_pham_ma').val(data.loai_san_pham_ma).attr('disabled', true);
-                        $('#loai_san_pham_ten_vn').val(data.loai_san_pham_ten_vn);
-                        $('#loai_san_pham_ten_en').val(data.loai_san_pham_ten_en);
+                        $('#modal_title').text('Sửa đơn vị vận chuyển');
+                        $('#don_vi_van_chuyen_ma').val(data.don_vi_van_chuyen_ma).attr('disabled', true);
+                        $('#don_vi_van_chuyen_ten_vn').val(data.don_vi_van_chuyen_ten_vn);
+                        $('#don_vi_van_chuyen_ten_en').val(data.don_vi_van_chuyen_ten_en);
+                        $('#don_vi_van_chuyen_gia_goc').val(data.don_vi_van_chuyen_gia_goc);
+                        $('#don_vi_van_chuyen_gia').val(data.don_vi_van_chuyen_gia);
                         if ($('#_method').length === 0) {                          
-                            $('#loai_san_pham_ten_en').after('<input id = "_method" type="hidden" name="_method" value="PUT" />');
+                            $('#don_vi_van_chuyen_ten_en').after('<input id = "_method" type="hidden" name="_method" value="PUT" />');
                         }
                         $('#frmMain').attr('action', action);
                         $('#modal').modal('show');

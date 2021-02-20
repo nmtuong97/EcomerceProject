@@ -34,6 +34,13 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('loaisanpham.index') }}">Loại sản phẩm</a>
+                        <a class="collapse-item" href="{{ route('nhasanxuat.index') }}">Nhà sản xuất</a>
+                        <a class="collapse-item" href="{{ route('nhacungcap.index') }}">Nhà cung cấp</a>
+                        <a class="collapse-item" href="{{ route('chude.index') }}">Chủ đề</a>
+                        <a class="collapse-item" href="{{ route('mausac.index') }}">Màu sắc</a>
+                        <a class="collapse-item" href="{{ route('lydo.index') }}">Lý do</a>
+                        <a class="collapse-item" href="{{ route('donvivanchuyen.index') }}">Đơn vị vận chuyển</a>
+                        <a class="collapse-item" href="{{ route('nhanvien.index') }}">Nhân viên</a>
                         <a class="collapse-item" href="cards.html">Sản phẩm</a>
                     </div>
                 </div>
@@ -49,10 +56,7 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                        <a class="collapse-item" href="{{ route('nhanvien.index') }}">Nhân viên</a>
                     </div>
                 </div>
             </li>

@@ -62,6 +62,13 @@ class loaisanphamController extends Controller
         $loai->delete();
     }
     
+    public function print() {
+        $ds_loai = loai_san_pham::all();
+
+        return view('loaisanpham.print')
+            ->with('data', $ds_loai);
+        }
+    
     
     
 }

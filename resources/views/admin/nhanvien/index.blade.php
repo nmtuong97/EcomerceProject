@@ -5,6 +5,13 @@
 @endsection
 
 @section('content')
+    <link href="{{ asset ('vendor/bootstrap-fileinput/css/fileinput.min.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <script src="{{ asset ('vendor/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
+    <script src="{{ asset ('vendor/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap-fileinput/js/plugins/sortable.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/bootstrap-fileinput/js/locales/vi.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fas/theme.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/bootstrap-fileinput/themes/fas/theme.js') }}" type="text/javascript"></script>
 <style>
    
 </style>
@@ -25,8 +32,10 @@
                                     <thead>
                                         <tr align="center">
                                             <th width="5%">STT</th>
-                                            <th width ="10%">Ảnh</th>
-                                            <th width ="15%">Mã</th>
+                                            <th>Sửa</th>
+                                            <th>Xóa</th>
+                                            <th width ="5%">Ảnh</th>
+                                            <th width ="10%">Mã</th>
                                             <th>Tên</th>
                                             <th>Username</th>
                                             <th>Giới tính</th>
@@ -34,8 +43,6 @@
                                             <th>SĐT</th>
                                             <th>Email</th>
                                             <th>Quyền</th>
-                                            <th>Sửa</th>
-                                            <th>Xóa</th>
                                         </tr>
                                     </thead>
                                     
@@ -53,14 +60,6 @@
                                         @foreach ($data as $k => $v)
                                         <tr>
                                             <td align="center" style="font-weight: bold;">{{ $k + 1 }}</td>
-                                            <td>{{ $v->nhan_vien_hinh_anh }}</td>
-                                            <td>{{ $v->nhan_vien_ho_lot_vn }} {{ $v->nhan_vien_ten_vn }}</td>
-                                            <td>{{ $v->nhan_vien_username }}</td>
-                                            <td>{{ $v->nhan_vien_gioi_tinh }}</td>
-                                            <td>{{ $v->nhan_vien_dia_chi }}</td>
-                                            <td>{{ $v->nhan_vien_sdt }}</td>
-                                            <td>{{ $v->nhan_vien_email }}</td>
-                                            <td>{{ $v->nhan_vien_admin }}</td>
                                             <td align="center" width="5%"><i class="fas fa-pen function" style="color:blue" title="Sửa" onclick="prepareEdit({{ $v->nhan_vien_id }}, '{{ route('nhanvien.update', ['id' => $v->nhan_vien_id])}}')"></i></td>
                                             <td align="center" width="5%">
                                                 <form name="frmXoa" method="POST" action="{{route('nhanvien.destroy',['id' => $v->nhan_vien_id])}}"  class="delete-form" data-id = "{{ $v->nhan_vien_id }}">
@@ -68,6 +67,40 @@
                                                     <input type="hidden" name="_method" value="DELETE" />
                                                     <button type="submit" class="btn btn-link" ><i class="fas fa-trash-alt function" style="color:red"></i></button>
                                                 </form>
+                                            </td>
+                                            <!--<td>{{ $v->nhan_vien_hinh_anh }}</td>-->
+                                            <td align="center">
+                                                @if ($v->nhan_vien_hinh_anh == '')
+                                                    
+                                                    @if ($v->nhan_vien_gioi_tinh == 1)
+                                                        <img src="{{ asset('storage/photos/men_user.png') }}" class="img-list" width="50px" height="50px" />
+                                                     @else
+                                                        <img src="{{ asset('storage/photos/women_user.png') }}" class="img-list" width="50px" height="50px" />
+                                                    @endif
+                                                @else 
+                                                    <img src="{{ asset('storage/photos/' . $v->nhan_vien_hinh_anh) }}" class="img-list" width="50px" height="50px" />
+                                                @endif
+                                                
+                                            </td>
+                                            <td>{{ $v->nhan_vien_ma }}</td>
+                                            <td>{{ $v->nhan_vien_ho_lot_vn }} {{ $v->nhan_vien_ten_vn }}</td>
+                                            <td>{{ $v->nhan_vien_username }}</td>
+                                            <td>
+                                                @if ($v->nhan_vien_gioi_tinh == 1)
+                                                    Nam
+                                                 @else
+                                                    Nữ
+                                                @endif
+                                            </td>
+                                            <td>{{ $v->nhan_vien_dia_chi }}</td>
+                                            <td>{{ $v->nhan_vien_sdt }}</td>
+                                            <td>{{ $v->nhan_vien_email }}</td>
+                                            <td>
+                                                @if ($v->nhan_vien_admin == 1)
+                                                    Admin
+                                                 @else
+                                                    Nhân viên
+                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach
@@ -84,7 +117,7 @@
 
 <!-- Modal them moi-->
 <div class="modal fade " id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modal_title">Thêm mới nhân viên</h5>
@@ -112,7 +145,7 @@
             <div class="form-group row">
                 <label for="nhan_vien_ten_vn" class="col-sm-2 col-form-label">Tên</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{ old('nhan_vien_ten_vn') }}" name="nhan_vien_ten_vn" id="nhan_vien_ten_vn">
+                    <input type="text" class="form-control require-row" value="{{ old('nhan_vien_ten_vn') }}" name="nhan_vien_ten_vn" id="nhan_vien_ten_vn">
                 </div>
             </div>
             <div class="form-group row">
@@ -135,44 +168,46 @@
             <div class="form-group row">
                 <label for="nhan_vien_email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{ old('nhan_vien_email') }}" name="nhan_vien_email" id="nhan_vien_email">
+                    <input type="text" class="form-control require-row" value="{{ old('nhan_vien_email') }}" name="nhan_vien_email" id="nhan_vien_email">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="nhan_vien_sdt" class="col-sm-2 col-form-label">Số điện thoại</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{ old('nhan_vien_sdt') }}" name="nhan_vien_sdt" id="nhan_vien_sdt">
+                    <input type="text" class="form-control require-row" value="{{ old('nhan_vien_sdt') }}" name="nhan_vien_sdt" id="nhan_vien_sdt">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="nhan_vien_dia_chi" class="col-sm-2 col-form-label">Địa chỉ</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{ old('nhan_vien_dia_chi') }}" name="nhan_vien_dia_chi" id="nhan_vien_dia_chi">
+                    <input type="text" class="form-control require-row" value="{{ old('nhan_vien_dia_chi') }}" name="nhan_vien_dia_chi" id="nhan_vien_dia_chi">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="nhan_vien_admin" class="col-sm-2 col-form-label">Quyền</label>
                 <div class="col-sm-10">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="nhan_vien_admin" id="nhan_vien_admin_nv" value="1" checked>
+                        <input class="form-check-input" type="radio" name="nhan_vien_admin" id="nhan_vien_admin_nv" value="0" checked>
                         <label class="form-check-label" for="nhan_vien_admin_nv">
                           Nhân viên
                         </label>
                       </div>
                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="nhan_vien_admin" id="nhan_vien_admin_admin" value="2">
+                        <input class="form-check-input" type="radio" name="nhan_vien_admin" id="nhan_vien_admin_admin" value="1">
                         <label class="form-check-label" for="nhan_vien_admin_admin">
                           Admin
                         </label>
                       </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="file-loading">
-                  <label>Ảnh nhân viên</label>
-                  <input id="nhan_vien_hinh_anh" type="file" name="nhan_vien_hinh_anh">
+            <div class="form-group row">
+                <label for="nhan_vien_hinh_anh" class="col-sm-2 col-form-label">Hình ảnh</label>
+                <div class="col-sm-10">
+                    <div class="file-loading">
+                        <input id="nhan_vien_hinh_anh" type="file" name="nhan_vien_hinh_anh">
+                    </div>
                 </div>
-              </div>
+            </div>
             
             <!--end form-->
       </div>
@@ -199,7 +234,8 @@
                 browseClass: "btn btn-primary btn-lg",
                 fileType: "any",
                 previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-                overwriteInitial: false
+                overwriteInitial: false,
+                language:'vi'
               });
             
         @if ($errors->any())
@@ -231,17 +267,21 @@
                             location.reload();  
                         }, 1000);
                     }
-                  });
+            });
                 }
-              });
+        });
             });
         });
         
         function prepareAdd(){
             ClearErrorMessage();
             $('#nhan_vien_ma').val('').attr('disabled', false);
+            $('#nhan_vien_ho_lot_vn').val('');
             $('#nhan_vien_ten_vn').val('');
-            $('#nhan_vien_ten_en').val('');
+            $('#nhan_vien_email').val('').attr('disabled', false);;
+            $('#nhan_vien_sdt').val('');
+            $('#nhan_vien_dia_chi').val('');
+            $('#nhan_vien_hinh_anh').val('');
             $('imput[name ="_method"]').val();
             $('#_method').remove();
             $('#frmMain').attr('action', '{{ route('nhanvien.store') }}');
@@ -263,10 +303,17 @@
                         var data = response.data;
                         $('#modal_title').text('Sửa nhân viên');
                         $('#nhan_vien_ma').val(data.nhan_vien_ma).attr('disabled', true);
+                        $('#nhan_vien_ho_lot_vn').val(data.nhan_vien_ho_lot_vn);
                         $('#nhan_vien_ten_vn').val(data.nhan_vien_ten_vn);
-                        $('#nhan_vien_ten_en').val(data.nhan_vien_ten_en);
+                        $('#nhan_vien_email').val(data.nhan_vien_email).attr('disabled', true);;
+                        $('#nhan_vien_sdt').val(data.nhan_vien_sdt);
+                        $('#nhan_vien_dia_chi').val(data.nhan_vien_dia_chi);
+                        $('input[name=nhan_vien_gioi_tinh][value='+data.nhan_vien_gioi_tinh+']').prop('checked', 'checked');
+                        $('input[name=nhan_vien_admin][value='+data.nhan_vien_admin+']').prop('checked', 'checked');
+                        
+
                         if ($('#_method').length === 0) {                          
-                            $('#nhan_vien_ten_en').after('<input id = "_method" type="hidden" name="_method" value="PUT" />');
+                            $('#nhan_vien_ma').after('<input id = "_method" type="hidden" name="_method" value="PUT" />');
                         }
                         $('#frmMain').attr('action', action);
                         $('#modal').modal('show');

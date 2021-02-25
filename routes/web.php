@@ -79,3 +79,14 @@ Route::get('admin/nhanvien/infonhanvien', 'App\Http\Controllers\Backend\nhanvien
 Route::put('admin/nhanvien/update/{id}', 'App\Http\Controllers\Backend\nhanvienController@update')->name('nhanvien.update');
 Route::DELETE('admin/nhanvien/destroy/{id}', 'App\Http\Controllers\Backend\nhanvienController@destroy')->name('nhanvien.destroy');
 
+//Sản phẩm
+Route::get('/admin/sanpham', 'App\Http\Controllers\Backend\sanphamController@index')->name('sanpham.index');
+Route::get('admin/sanpham/edit/{id}', 'App\Http\Controllers\Backend\sanphamController@edit')->name('sanpham.edit');
+Route::get('/admin/sanpham/create', 'App\Http\Controllers\Backend\sanphamController@create')->name('sanpham.create');
+Route::post('admin/sanpham/store', 'App\Http\Controllers\Backend\sanphamController@store')->name('sanpham.store');
+Route::post('admin/sanpham/updateinfo', 'App\Http\Controllers\Backend\sanphamController@updateinfo')->name('sanpham.updateinfo');
+Route::get('admin/sanpham/getInfoSanPham', 'App\Http\Controllers\Backend\sanphamController@getInfoSanPham')->name('sanpham.getInfoSanPham');
+Route::put('admin/sanpham/update/{id}', 'App\Http\Controllers\Backend\sanphamController@update')->name('sanpham.update');
+Route::DELETE('admin/sanpham/destroy/{id}', 'App\Http\Controllers\Backend\sanphamController@destroy')->name('sanpham.destroy');
+Route::POST('admin/sanpham/deleteavatar/{id}', 'App\Http\Controllers\Backend\sanphamController@deleteAvatar')->name('sanpham.deleteavatar');
+Route::POST('admin/sanpham/deleteimage/{id}', 'App\Http\Controllers\Backend\sanphamController@deleteimage')->name('sanpham.deleteimage');

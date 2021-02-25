@@ -25,13 +25,13 @@
                                     <thead>
                                         <tr align="center">
                                             <th width="5%">STT</th>
+                                            <th>Sửa</th>
+                                            <th>Xóa</th>
                                             <th width ="15%">Mã</th>
                                             <th>Tên</th>
                                             <th>Tên tiếng anh</th>
                                             <th style="white-space: nowrap;">Giá gốc</th>
                                             <th style="white-space: nowrap;">Giá</th>
-                                            <th>Sửa</th>
-                                            <th>Xóa</th>
                                         </tr>
                                     </thead>
                                     
@@ -49,12 +49,6 @@
                                         @foreach ($data as $k => $v)
                                         <tr>
                                             <td align="center" style="font-weight: bold;">{{ $k + 1 }}</td>
-                                            <td>{{ $v->don_vi_van_chuyen_ma }}</td>
-                                            <td>{{ $v->don_vi_van_chuyen_ten_vn }}</td>
-                                            <td>{{ $v->don_vi_van_chuyen_ten_en }}</td>
-                                            <td class="tien-te">{{ $v->don_vi_van_chuyen_gia_goc }}</td>
-                                            <td class="tien-te">{{ $v->don_vi_van_chuyen_gia }}</td>
-
                                             <td align="center" width="5%"><i class="fas fa-pen function" style="color:blue" title="Sửa" onclick="prepareEdit({{ $v->don_vi_van_chuyen_id }}, '{{ route('donvivanchuyen.update', ['id' => $v->don_vi_van_chuyen_id])}}')"></i></td>
                                             <td align="center" width="5%">
                                                 <form name="frmXoa" method="POST" action="{{route('donvivanchuyen.destroy',['id' => $v->don_vi_van_chuyen_id])}}"  class="delete-form" data-id = "{{ $v->don_vi_van_chuyen_id }}">
@@ -63,6 +57,12 @@
                                                     <button type="submit" class="btn btn-link" ><i class="fas fa-trash-alt function" style="color:red"></i></button>
                                                 </form>
                                             </td>
+                                            <td>{{ $v->don_vi_van_chuyen_ma }}</td>
+                                            <td>{{ $v->don_vi_van_chuyen_ten_vn }}</td>
+                                            <td>{{ $v->don_vi_van_chuyen_ten_en }}</td>
+                                            <td class="tien-te">{{ $v->don_vi_van_chuyen_gia_goc }}</td>
+                                            <td class="tien-te">{{ $v->don_vi_van_chuyen_gia }}</td>
+
                                         </tr>
                                         @endforeach
                                     </tbody>

@@ -25,7 +25,7 @@ function stripUnicode($str) {
 
         $str = preg_replace("/($uni)/i", $nonUnicode, $str);
     }
-    $str = str_replace(' ', '_', $str);
+//    $str = str_replace(' ', '_', $str);
 
     return $str;
 }

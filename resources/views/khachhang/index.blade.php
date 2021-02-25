@@ -277,7 +277,7 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0 ">
                                                     
-                                                    <img src="{{ asset('storage/sanpham_avatar/'.$sp->san_pham_hinh_anh) }}" alt="IMG-PRODUCT" class="sp_avatar">
+                                                    <img src="{{ asset('storage/photo/'.$sp->san_pham_hinh_anh) }}" alt="IMG-PRODUCT" class="sp_avatar">
                                                     <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" onclick="loaddetail('{{$sp->san_pham_ma}}')">
                                                         Xem
                                                     </a>
@@ -333,43 +333,43 @@
                                 <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
                                 <div class="slick3 gallery-lb ">
-                                    <div id="div_img_detail1" class="item-slick3 img_detail" data-thumb="{{ asset('themes/cozastore/images/product-detail-01.jpg') }}">
+                                    <div id="div_img_detail1" class="item-slick3 img_detail" data-thumb="">
                                         <div class="wrap-pic-w pos-relative">
-                                            <img id='img_detail1' src="{{ asset('themes/cozastore/images/product-detail-01.jpg') }}" alt="IMG-PRODUCT">
-                                            <a id='a_detail1' class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset('themes/cozastore/images/product-detail-01.jpg') }}">
-                                                <i class="fa fa-expand"></i>
+                                            <img id='img_detail1' src="" alt="IMG-PRODUCT">
                                             </a>
                                         </div>
                                     </div>
-                                    <div id="div_img_detail2" class="item-slick3 img_detail" data-thumb="{{ asset('themes/cozastore/images/product-detail-02.jpg') }}">
+                                    <div id="div_img_detail2" class="item-slick3 img_detail" data-thumb="">
                                         <div class="wrap-pic-w pos-relative">
-                                            <img id='img_detail2' src="{{ asset('themes/cozastore/images/product-detail-02.jpg') }}" alt="IMG-PRODUCT">
-                                            <a id='a_detail2' class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset('themes/cozastore/images/product-detail-02.jpg') }}">
-                                                <i class="fa fa-expand"></i>
+                                            <img id='img_detail2' src="" alt="IMG-PRODUCT">
+                                            
                                             </a>
                                         </div>
                                     </div>
-                                    <div id="div_img_detail3" class="item-slick3 img_detail" data-thumb="{{ asset('themes/cozastore/images/product-detail-03.jpg') }}">
+                                    <div id="div_img_detail3" class="item-slick3 img_detail" data-thumb="">
                                         <div class="wrap-pic-w pos-relative">
-                                            <img id='img_detail3' src="{{ asset('themes/cozastore/images/product-detail-03.jpg') }}" alt="IMG-PRODUCT">
-                                            <a id='a_detail3' class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset('themes/cozastore/images/product-detail-01.jpg') }}">
-                                                <i class="fa fa-expand"></i>
+                                            <img id='img_detail3' src="" alt="IMG-PRODUCT">
+                                            
                                             </a>
                                         </div>
                                     </div>
-                                    <div id="div_img_detail4" class="item-slick3 img_detail" data-thumb="{{ asset('themes/cozastore/images/product-detail-04.jpg') }}">
+                                    <div id="div_img_detail4" class="item-slick3 img_detail" data-thumb="">
                                         <div class="wrap-pic-w pos-relative">
-                                            <img id='img_detail4' src="{{ asset('themes/cozastore/images/product-detail-04.jpg') }}" alt="IMG-PRODUCT">
-                                            <a id='a_detail4' class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset('themes/cozastore/images/product-detail-04.jpg') }}">
-                                                <i class="fa fa-expand"></i>
+                                            <img id='img_detail4' src="" alt="IMG-PRODUCT">
+                                           
                                             </a>
                                         </div>
                                     </div>
-                                    <div id="div_img_detail5" class="item-slick3 img_detail" data-thumb="{{ asset('themes/cozastore/images/product-detail-05.jpg') }}">
+                                    <div id="div_img_detail5" class="item-slick3 img_detail" data-thumb="">
                                         <div class="wrap-pic-w pos-relative">
-                                            <img id='img_detail5' src="{{ asset('themes/cozastore/images/product-detail-05.jpg') }}" alt="IMG-PRODUCT">
-                                            <a id='a_detail5' class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset('themes/cozastore/images/product-detail-05.jpg') }}">
-                                                <i class="fa fa-expand"></i>
+                                            <img id='img_detail5' src="" alt="IMG-PRODUCT">
+                                            
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div id="div_img_detail6" class="item-slick3 img_detail" data-thumb="">
+                                        <div class="wrap-pic-w pos-relative">
+                                            <img id='img_detail6' src="" alt="IMG-PRODUCT">
                                             </a>
                                         </div>
                                     </div>
@@ -403,13 +403,15 @@
 
                                     <div class="size-204 respon6-next">
                                         <div class="rs1-select2 bor8 bg0">
-                                            <select class="js-select2" name="time">
-                                                <option>Choose an option</option>
+                                            <input type="hidden" name="h_hassize" id="h_hassize" value="0">
+                                            <select class="js-select2" name="cmbsize" id="cmbsize">
+<!--                                                <option>Chọn size</option>
                                                 <option>Size S</option>
                                                 <option>Size M</option>
                                                 <option>Size L</option>
-                                                <option>Size XL</option>
+                                                <option>Size XL</option>-->
                                             </select>
+                                            
                                             <div class="dropDownSelect2"></div>
                                         </div>
                                     </div>
@@ -417,17 +419,17 @@
 
                                 <div class="flex-w flex-r-m p-b-10">
                                     <div class="size-203 flex-c-m respon6">
-                                        Color
+                                        Màu sắc
                                     </div>
 
                                     <div class="size-204 respon6-next">
                                         <div class="rs1-select2 bor8 bg0">
                                             <select class="js-select2" name="time">
-                                                <option>Choose an option</option>
-                                                <option>Red</option>
+                                                <option>Chọn màu sắc</option>
+<!--                                                <option>Red</option>
                                                 <option>Blue</option>
                                                 <option>White</option>
-                                                <option>Grey</option>
+                                                <option>Grey</option>-->
                                             </select>
                                             <div class="dropDownSelect2"></div>
                                         </div>
@@ -449,14 +451,14 @@
                                         </div>
 
                                         <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                            Add to cart
+                                            Thêm vào giỏ
                                         </button>
                                     </div>
                                 </div>
                             </div>
 
                             <!--  -->
-                            <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+<!--                            <div class="flex-w flex-m p-l-100 p-t-40 respon7">
                                 <div class="flex-m bor9 p-r-10 m-r-11">
                                     <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
                                         <i class="zmdi zmdi-favorite"></i>
@@ -474,7 +476,7 @@
                                 <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
                                     <i class="fa fa-google-plus"></i>
                                 </a>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -502,6 +504,7 @@
 @endsection
 @section('custom-scripts')
 <script>
+    path = '<?php echo asset('storage/photo/'); ?>';
     $(document).ready(function(){
         $("#txtsearch").on("keyup", function() {
           var value = $(this).val().toLowerCase();
@@ -548,18 +551,56 @@
                 url: form_action,
                 type: "POST",
                 dataType: 'json',
+                async:false,
                 success: function (data) {
-                    alert(111);
-//                        var student = '<tr id="'+data.id+'">';
-//                        student += '<td>' + data.id + '</td>';
-//                        student += '<td>' + data.first_name + '</td>';
-//                        student += '<td>' + data.last_name + '</td>';
-//                        student += '<td>' + data.address + '</td>';
-//                        student += '<td><a data-id="' + data.id + '" class="btn btn-primary btnEdit">Edit</a>&nbsp;&nbsp;<a data-id="' + data.id + '" class="btn btn-danger btnDelete">Delete</a></td>';
-//                        student += '</tr>';            
-//                        $('#studentTable tbody').prepend(student);
-//                        $('#addStudent')[0].reset();
-//                        $('#addModal').modal('hide');
+                    var arr = data['hinh'];
+                    var arr_hinh = [];
+                    var count = 0;
+                    arr.forEach(function(item){
+                        arr_hinh[count] = item.hinhanh;
+                        count++;
+                    });
+                    var i;
+                    for (i = 0; i < 6; i++) {
+//                        alert(arr_hinh[i]);
+                        if (arr_hinh[i] != undefined) {
+                            img = arr_hinh[i];
+                            $("#img_detail"+(i+1)).attr('src',path+'/'+img);
+                            $("#img_slide_"+i).attr('src',path+'/'+img);
+                            $("#img_slide_"+i).parent().show();
+                            $("#img_detail"+(i+1)).show();
+                        } else {
+                            $("#img_slide_"+i).parent().hide();
+                            $("#img_detail"+(i+1)).hide();
+                        }
+                    }
+                    
+//                    console.log(arr_hinh);
+                    var arr_sp = data['sp'];
+                    var name = arr_sp[0].san_pham_ten_vn;
+                    var price = arr_sp[0].san_pham_gia_ban;
+                    var note = arr_sp[0].san_pham_mo_ta;
+                    var img = arr_sp[0].san_pham_hinh_anh;
+                    
+                    $("#product_name").html(name);
+                    $("#product_price").html(price+'đ');
+                    $("#product_note").html(note);
+
+                    var arr_size = data['kichthuoc'];
+//                    alert(arr_size.length);
+                    if (arr_size.length > 0) {
+                        var i;
+                        var option = "<option value=''>Chọn size</option>";
+                        arr_size.forEach(function(item){
+                            option += "<option value='"+item.ma+"'>"+item.ten+"</option>";
+                        });
+                        $("#h_hassize").val(1);
+                        $("#cmbsize").html(option);
+                        $("#cmbsize").parent().parent().parent().show();
+                    } else {
+                        $("#cmbsize").parent().parent().parent().hide();
+                        $("#h_hassize").val(0);
+                    }
                 },
                 error: function (data) {
                 }

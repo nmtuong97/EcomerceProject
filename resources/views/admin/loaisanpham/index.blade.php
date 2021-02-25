@@ -25,11 +25,11 @@
                                     <thead>
                                         <tr align="center">
                                             <th width="5%">STT</th>
+                                            <th>Sửa</th>
+                                            <th>Xóa</th>
                                             <th width ="15%">Mã</th>
                                             <th>Tên</th>
                                             <th>Tên tiếng anh</th>
-                                            <th>Sửa</th>
-                                            <th>Xóa</th>
                                         </tr>
                                     </thead>
                                     
@@ -47,9 +47,6 @@
                                         @foreach ($data as $k => $v)
                                         <tr>
                                             <td align="center" style="font-weight: bold;">{{ $k + 1 }}</td>
-                                            <td>{{ $v->loai_san_pham_ma }}</td>
-                                            <td>{{ $v->loai_san_pham_ten_vn }}</td>
-                                            <td>{{ $v->loai_san_pham_ten_eng }}</td>
                                             <td align="center" width="5%"><i class="fas fa-pen function" style="color:blue" title="Sửa" onclick="prepareEdit({{ $v->loai_san_pham_id }}, '{{ route('loaisanpham.update', ['id' => $v->loai_san_pham_id])}}')"></i></td>
                                             <td align="center" width="5%">
                                                 <form name="frmXoa" method="POST" action="{{route('loaisanpham.destroy',['id' => $v->loai_san_pham_id])}}"  class="delete-form" data-id = "{{ $v->loai_san_pham_id }}">
@@ -58,6 +55,9 @@
                                                     <button type="submit" class="btn btn-link" ><i class="fas fa-trash-alt function" style="color:red"></i></button>
                                                 </form>
                                             </td>
+                                            <td>{{ $v->loai_san_pham_ma }}</td>
+                                            <td>{{ $v->loai_san_pham_ten_vn }}</td>
+                                            <td>{{ $v->loai_san_pham_ten_eng }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

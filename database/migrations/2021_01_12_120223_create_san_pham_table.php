@@ -28,7 +28,9 @@ class CreateSanPhamTable extends Migration
             $table->timestamp('san_pham_tao_moi')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('san_pham_cap_nhat')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->unsignedTinyInteger('loai_san_pham_id')->comment('id loại sản phẩm');
+            $table->unsignedTinyInteger('nsx_id')->comment('id nhà sản xuất');
             $table->foreign('loai_san_pham_id')->references('loai_san_pham_id')->on('loai_san_pham')->onDelete('RESTRICT')->onUpdate('RESTRICT');
+            $table->foreign('nsx_id')->references('nsx_id')->on('nha_san_xuat')->onDelete('RESTRICT')->onUpdate('RESTRICT');
         });
     }
 

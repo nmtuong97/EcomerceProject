@@ -29,11 +29,10 @@
     
     
     <script src="{{ asset ('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset ('vendor/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
     <script src="{{ asset('themes/admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('themes/admin/js/sb-admin-2.min.js')}}"></script>
     
-
+    
     @yield('custom-css')
    
 </head>
@@ -88,12 +87,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <!--<script src="{{ asset ('vendor/jquery/jquery.js') }}"></script>-->
-    <script src="{{ asset ('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('themes/admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('themes/admin/js/sb-admin-2.min.js')}}"></script>
@@ -101,7 +94,6 @@
     <script src="{{ asset('vendor/sweetalert/sweetalert.js') }}"></script>
     <script src="{{ asset('vendor/Inputmask/dist/jquery.inputmask.min.js') }}"></script>
     <script src="{{ asset('vendor/Inputmask/dist/bindings/inputmask.binding.js') }}"></script>
-    <script src="{{ asset('vendor/CustomJs/CustomJs.js') }}"></script>
     
     
 </body>

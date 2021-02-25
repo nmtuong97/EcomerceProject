@@ -40,8 +40,6 @@
                         <a class="collapse-item" href="{{ route('mausac.index') }}">Màu sắc</a>
                         <a class="collapse-item" href="{{ route('lydo.index') }}">Lý do</a>
                         <a class="collapse-item" href="{{ route('donvivanchuyen.index') }}">Đơn vị vận chuyển</a>
-                        <a class="collapse-item" href="{{ route('nhanvien.index') }}">Nhân viên</a>
-                        <a class="collapse-item" href="cards.html">Sản phẩm</a>
                     </div>
                 </div>
             </li>
@@ -57,6 +55,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('nhanvien.index') }}">Nhân viên</a>
+                        <a class="collapse-item" href="{{ route('sanpham.index') }}">Sản phẩm</a>
                     </div>
                 </div>
             </li>

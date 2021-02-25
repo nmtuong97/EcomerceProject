@@ -25,12 +25,12 @@
                                     <thead>
                                         <tr align="center">
                                             <th width="5%">STT</th>
+                                            <th>Sửa</th>
+                                            <th>Xóa</th>
                                             <th width ="15%">Mã</th>
                                             <th>Tên</th>
                                             <th>Tên tiếng anh</th>
                                             <th>Loại lý do</th>
-                                            <th>Sửa</th>
-                                            <th>Xóa</th>
                                         </tr>
                                     </thead>
                                     
@@ -48,6 +48,14 @@
                                         @foreach ($data as $k => $v)
                                         <tr>
                                             <td align="center" style="font-weight: bold;">{{ $k + 1 }}</td>
+                                            <td align="center" width="5%"><i class="fas fa-pen function" style="color:blue" title="Sửa" onclick="prepareEdit({{ $v->ly_do_id }}, '{{ route('lydo.update', ['id' => $v->ly_do_id])}}')"></i></td>
+                                            <td align="center" width="5%">
+                                                <form name="frmXoa" method="POST" action="{{route('lydo.destroy',['id' => $v->ly_do_id])}}"  class="delete-form" data-id = "{{ $v->ly_do_id }}">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="_method" value="DELETE" />
+                                                    <button type="submit" class="btn btn-link" ><i class="fas fa-trash-alt function" style="color:red"></i></button>
+                                                </form>
+                                            </td>
                                             <td>{{ $v->ly_do_ma }}</td>
                                             <td>{{ $v->ly_do_ten_vn }}</td>
                                             <td>{{ $v->ly_do_ten_en }}</td>
@@ -57,14 +65,6 @@
                                                 @else
                                                     Xuất kho
                                                 @endif
-                                            </td>
-                                            <td align="center" width="5%"><i class="fas fa-pen function" style="color:blue" title="Sửa" onclick="prepareEdit({{ $v->ly_do_id }}, '{{ route('lydo.update', ['id' => $v->ly_do_id])}}')"></i></td>
-                                            <td align="center" width="5%">
-                                                <form name="frmXoa" method="POST" action="{{route('lydo.destroy',['id' => $v->ly_do_id])}}"  class="delete-form" data-id = "{{ $v->ly_do_id }}">
-                                                    {{ csrf_field() }}
-                                                    <input type="hidden" name="_method" value="DELETE" />
-                                                    <button type="submit" class="btn btn-link" ><i class="fas fa-trash-alt function" style="color:red"></i></button>
-                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

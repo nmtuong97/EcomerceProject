@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="{{ asset('themes/cozastore/images/icons/favicon.png') }}" />
+    <link href="{{ asset ('themes/cozastore/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('themes/cozastore/css/util.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('themes/cozastore/css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/cozastore/vendor/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/cozastore/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/cozastore/fonts/iconic/css/material-design-iconic-font.min.css') }}">
@@ -18,8 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/cozastore/vendor/slick/slick.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/cozastore/vendor/MagnificPopup/magnific-popup.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/cozastore/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('themes/cozastore/css/util.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('themes/cozastore/css/main.css') }}">
+    
     
     <link href="{{ asset ('themes/cozastore/vendor/datatables/bootstrap.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset ('themes/cozastore/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
@@ -30,7 +32,7 @@
     <script src="{{ asset('themes/cozastore/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{ asset('themes/cozastore/vendor/datatables/dataTables.responsive.min.js')}}"></script>
     <script src="{{ asset('themes/cozastore/vendor/datatables/responsive.bootstrap4.min.js')}}"></script>
-    <link href="{{ asset ('themes/cozastore/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    
     <!-- Các custom style của frontend -->
     <link rel="stylesheet" href="{{ asset('themes/cozastore/css/custom-styles.css') }}">
 
@@ -50,7 +52,6 @@
 //    $infokhachhang = Ses
 //    Session::forget('khachhanginfo');
         $infokhachhang = Session::get('khachhanginfo');
-        print_r($infokhachhang);
     ?>
     <!-- Header -->
     @include('khachhang.layouts.partials.header')

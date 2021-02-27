@@ -278,6 +278,7 @@
     });
     
     $('.require-login').on('click',function(){
+//        alert(11111111);
         checkLogin();
     });
 

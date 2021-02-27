@@ -31,7 +31,13 @@ function ClearErrorMessage(){
 }
 
 function checkLogin() {
+//    alert('check login '+$("#h_loggedin").val());
     if($("#h_loggedin").val() != '1') {
+        
+        $(".show-modal1").each(function(){
+            $(this).removeClass("show-modal1");
+        });
+        
         openModalLogin(true);
     }
 }

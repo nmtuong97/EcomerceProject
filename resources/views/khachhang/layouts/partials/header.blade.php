@@ -12,11 +12,20 @@
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
                         Help & FAQs
                     </a>
-
+                    <?php 
+                    $infokh = Session::get('khachhanginfo');
+//                    print_r(11111);die;
+                    dd(11111111111111111111);
+                    if(!empty($infokh)){
+                    ?>
                     <a href="#" id="a_login" class="flex-c-m trans-04 p-lr-25 require-login">
-                        Đăng nhập
+                        Đăng nhập 111
                     </a>
-
+                    <?php } else { ?>
+                    <a href="#" id="a_logoff" class="flex-c-m trans-04 p-lr-25 logoff">
+                        Đăng xuất 222
+                    </a>
+                    <?php } ?>
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
                         VN
                     </a>

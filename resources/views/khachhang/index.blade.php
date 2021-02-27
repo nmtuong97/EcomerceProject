@@ -277,7 +277,7 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0 ">
                                                     
-                                                    <img src="{{ asset('storage/photo/'.$sp->san_pham_hinh_anh) }}" alt="IMG-PRODUCT" class="sp_avatar">
+                                                    <img src="{{ asset('storage/photos/'.$sp->san_pham_hinh_anh) }}" alt="IMG-PRODUCT" class="sp_avatar">
                                                     <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 detailproduct" onclick="loaddetail('{{$sp->san_pham_ma}}')">
                                                         Xem
                                                     </a>
@@ -397,6 +397,7 @@
                             <!--  -->
                             <div class="p-t-33">
                                 <div class="flex-w flex-r-m p-b-10">
+                                            
                                     <div class="size-203 flex-c-m respon6">
                                         Size
                                     </div>
@@ -404,7 +405,7 @@
                                     <div class="size-204 respon6-next">
                                         <div class="rs1-select2 bor8 bg0">
                                             <input type="hidden" name="h_hassize" id="h_hassize" value="0">
-                                            <select class="js-select2" name="cmbsize" id="cmbsize">
+                                            <select class="form-control" name="cmbsize" id="cmbsize">
 <!--                                                <option>Chọn size</option>
                                                 <option>Size S</option>
                                                 <option>Size M</option>
@@ -412,7 +413,7 @@
                                                 <option>Size XL</option>-->
                                             </select>
                                             
-                                            <div class="dropDownSelect2"></div>
+                                            <!--<div class="dropDownSelect2"></div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -425,14 +426,14 @@
                                     <div class="size-204 respon6-next">
                                         <div class="rs1-select2 bor8 bg0">
                                             <input type="hidden" name="h_hascolor" id="h_hascolor" value="0">
-                                            <select class="js-select2" name="time" name='cmbcolor' id="cmbcolor">
+                                            <select class="form-control" name='cmbcolor' id="cmbcolor">
                                                 <!--<option>Chọn màu sắc</option>-->
 <!--                                                <option>Red</option>
                                                 <option>Blue</option>
                                                 <option>White</option>
                                                 <option>Grey</option>-->
                                             </select>
-                                            <div class="dropDownSelect2"></div>
+                                            <!--<div class="dropDownSelect2"></div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -451,7 +452,7 @@
                                             </div>
                                         </div>
 
-                                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 require-login">
                                             Thêm vào giỏ
                                         </button>
                                     </div>
@@ -506,7 +507,7 @@
 @endsection
 @section('custom-scripts')
 <script>
-    path = '<?php echo asset('storage/photo/'); ?>';
+    path = '<?php echo asset('storage/photos/'); ?>';
     $(document).ready(function(){
         $('.js-show-modal1').on('click',function(e){
             e.preventDefault();

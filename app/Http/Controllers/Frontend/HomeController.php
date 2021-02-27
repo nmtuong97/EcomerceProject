@@ -130,17 +130,34 @@ class HomeController extends Controller
     public function login(LogInRequest $request)
     {
 //        dd(bcrypt('123456'));
-//        $username = $request->username;
-//        $password = $request->password;
-        $info = Array(
-            'username' => 123,
-            'hoten' => 'Nhut Truong',
+        $username = $request->username;
+        $data = DB::select("
+            SELECT a.khach_hang_id,
+            b.khach_hang_email,
+            concat(b.khach_hang_ho_lot_vn,' ', b.khach_hang_ten_vn) hoten,
+            case WHEN b.khach_hang_gioi_tinh = '1' then 'Nam'
+            WHEN b.khach_hang_gioi_tinh = '2' then 'Nữ'
+            ELSE 'Khác' end gioitinh
+            b.khach_hang_ngay_sinh,
+            b.khach_hang_sdt,
+            b.khach_hang_dia_chi
+            from users a
+            left join khach_hang b on a.khach_hang_id = b.khach_hang_id
+            WHERE a.email = :username
             
-        );
+        ",['username' => $username]);
+        $info = Array();
+        foreach($data as $k => $v) {
+            $info['email'] = $v->khach_hang_email;
+            $info['hoten'] = $v->hoten;
+            $info['gioitinh'] = $v->gioitinh;
+            $info['ngaysinh'] = $v->khach_hang_ngay_sinh;
+            $info['sdt'] = $v->khach_hang_sdt;
+            $info['diachi'] = $v->khach_hang_dia_chi;
+            
+        }
+        Session::forget('khachhanginfo');
         Session::put('khachhanginfo', $info);
-        
-//        $value = Session::get('khachhanginfo');
-//        print_r($value);die;
         return redirect(route('home.index'));
     }
     /**

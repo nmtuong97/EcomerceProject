@@ -29,6 +29,9 @@ function showErorNotification(notification = null){
 function ClearErrorMessage(){
     $('#error-message').remove();
 }
+function DeleteErrorMessage(){
+    $('#error-message').html('');
+}
 function returnResultLogIn() {
     return $("#h_loggedin").val();
 }
@@ -54,5 +57,64 @@ function openModalLogin(clear=true){
 }
 
 function runlogoff(){
-    $("#frmLogoff").submit();
+    Swal.fire({
+        title: 'Bạn có chắc chắn muốn đăng xuất?',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Hủy',
+        confirmButtonText: 'Vâng, sẽ đăng xuất'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            $("#frmLogoff").submit();
+        }
+    });   
+}
+
+function addToCart(token,url,frmname,hassize =0,hascolor=0,choosesize=0,choosecolor=0,amount=0){
+//    alert($("#h_hascolor").val());
+//    alert($("#h_hassize").val());
+    var str = '';
+    if(hassize > 0) {
+        //san pham co mau sac
+        if(choosesize == '') {
+            str += '<li>Vui lòng chọn size.</li>';
+        }
+    }
+    if(hascolor > 0) {
+        //san pham co mau sac
+        if(choosecolor == '') {
+            str += '<li>Vui lòng chọn màu sắc.</li>';
+        }
+    }
+    if(amount < 1) {
+        str += '<li>Số lượng phải lớn hơn 0.</li>';
+    }
+    if(str != '') {
+        str = '<ul>'+str+'</ul>';
+        $("#error-message").html(str);
+    } else {
+        DeleteErrorMessage();
+        alert('them vao gio thanh cong');
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: $('#'+frmname).serialize()+"&_token="+token,
+            async: false,
+            success: function () {
+                alert('11111');
+//                Swal.fire(
+//                    'Xóa!',
+//                    'Bạn đã xóa thành công.',
+//                    'success'
+//                  ),
+//                setTimeout(function(){ 
+//                    location.reload();  
+//                }, 1000);
+            }
+        });
+    }
+    
 }

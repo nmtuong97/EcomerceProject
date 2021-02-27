@@ -285,9 +285,9 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 search_product">
+								<!--<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 search_product">-->
 									{{$sp->san_pham_ten_vn}}
-								</a>
+								<!--</a>-->
 
 								<span class="stext-105 cl3">
 									{{$sp->san_pham_gia_ban}}đ
@@ -379,22 +379,31 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                        
                     <div class="col-md-6 col-lg-5 p-b-30">
                         <div class="p-r-50 p-t-5 p-lr-0-lg">
                             <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                                <span id="product_name">Lightweight Jacket</span>
+                                <span id="product_name"></span>
                             </h4>
 
                             <span class="mtext-106 cl2">
-                                <span id="product_price">$58.79</span>
+                                <span id="product_price"></span>
                             </span>
 
                             <p class="stext-102 cl3 p-t-23">
-                               <span id="product_note"> Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.</span>
+                               <span id="product_note"></span>
                             </p>
-
+                            <div id="error-message" class="alert-danger">
+                                <!--<ul>-->
+<!--                                    <li>Mã loại sản phẩm không được để trống</li>
+                                    <li>Tên sản phẩm không được để trống</li>-->
+                                <!--</ul>-->
+                            </div>
                             <!--  -->
+                            <form id="frmAddToCart" name="frmAddToCart" method="POST">
+                             
+                            <!--<input type="hidden" name="_method" value="PUT" />-->
                             <div class="p-t-33">
                                 <div class="flex-w flex-r-m p-b-10">
                                             
@@ -405,12 +414,7 @@
                                     <div class="size-204 respon6-next">
                                         <div class="rs1-select2 bor8 bg0">
                                             <input type="hidden" name="h_hassize" id="h_hassize" value="0">
-                                            <select class="form-control" name="cmbsize" id="cmbsize">
-<!--                                                <option>Chọn size</option>
-                                                <option>Size S</option>
-                                                <option>Size M</option>
-                                                <option>Size L</option>
-                                                <option>Size XL</option>-->
+                                            <select class="form-control require-row" name="cmbsize" id="cmbsize">
                                             </select>
                                             
                                             <!--<div class="dropDownSelect2"></div>-->
@@ -426,12 +430,7 @@
                                     <div class="size-204 respon6-next">
                                         <div class="rs1-select2 bor8 bg0">
                                             <input type="hidden" name="h_hascolor" id="h_hascolor" value="0">
-                                            <select class="form-control" name='cmbcolor' id="cmbcolor">
-                                                <!--<option>Chọn màu sắc</option>-->
-<!--                                                <option>Red</option>
-                                                <option>Blue</option>
-                                                <option>White</option>
-                                                <option>Grey</option>-->
+                                            <select class="form-control require-row" name='cmbcolor' id="cmbcolor">
                                             </select>
                                             <!--<div class="dropDownSelect2"></div>-->
                                         </div>
@@ -445,20 +444,20 @@
                                                 <i class="fs-16 zmdi zmdi-minus"></i>   
                                             </div>
 
-                                            <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+                                            <input class="mtext-104 cl3 txt-center num-product" type="number" name="numproduct" value="1" id="numproduct">
 
                                             <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                                 <i class="fs-16 zmdi zmdi-plus"></i>
                                             </div>
                                         </div>
-
-                                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 require-login">
+                                        <input type="button" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 require-login" id="btnThemVaoGio" name="btnThemVaoGio" value="Thêm vào giỏ">
+<!--                                        <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 require-login" id="btnThemVaoGio" name="btnThemVaoGio">
                                             Thêm vào giỏ
-                                        </button>
+                                        </button>-->
                                     </div>
                                 </div>
                             </div>
-
+                            </form> 
                             <!--  -->
 <!--                            <div class="flex-w flex-m p-l-100 p-t-40 respon7">
                                 <div class="flex-m bor9 p-r-10 m-r-11">
@@ -486,8 +485,8 @@
         </div>
     </div>
     <form id="frminfo" name="frminfo" action="{{ route('home.info') }}" method="post">
-    <input type="hidden" name="masp" id="masp"/>
-    @csrf
+        <input type="hidden" name="masp" id="masp"/>
+        {{ csrf_field() }}
     </form>
     
     
@@ -508,9 +507,14 @@
 @section('custom-scripts')
 <script>
     path = '<?php echo asset('storage/photos/'); ?>';
+    token = '{{csrf_token()}}';
     $(document).ready(function(){
+        $('#btnThemVaoGio').on('click',function(e){
+            addToCart(token,'{{ route("home.addToCart") }}','frmAddToCart',$("#h_hassize").val(),$("#h_hascolor").val(),$("#cmbsize").val(),$("#cmbcolor").val(),$("#numproduct").val());
+        });
         $('.js-show-modal1').on('click',function(e){
             e.preventDefault();
+            DeleteErrorMessage();
             $('#jsmodal1').addClass('show-modal1');
         });
         $("#txtsearch").on("keyup", function() {

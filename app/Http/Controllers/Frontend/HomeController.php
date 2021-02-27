@@ -148,6 +148,7 @@ class HomeController extends Controller
         ",['username' => $username]);
         $info = Array();
         foreach($data as $k => $v) {
+            $info['idkh'] = $v->khach_hang_id;
             $info['email'] = $v->khach_hang_email;
             $info['hoten'] = $v->hoten;
             $info['gioitinh'] = $v->gioitinh;
@@ -165,6 +166,33 @@ class HomeController extends Controller
     {
         Session::forget('khachhanginfo');
         return redirect(route('home.index'));
+    }
+    
+    public function addToCart(Request $request){
+//        dd($request);
+        
+//        "h_hassize" => "1"
+//      "cmbsize" => "S"
+//      "h_hascolor" => "1"
+//      "cmbcolor" => "DEN"
+//      "numproduct" => "1"
+        $hassize = $request->h_hassize;
+        $size = $request->cmbsize;
+        $hascolor = $request->h_hascolor;
+        $color = $request->cmbcolor;
+        $numproduct = $request->numproduct;
+        
+        $infokh = Session::get('khachhanginfo');
+        $idkh = $infokh['idkh'];
+        
+        $data = DB::select("
+            SELECT a.khach_hang_id, a.san_pham_id
+            from gio_hang a
+            where a.khach_hang_id = :idkh and a.san_pham_id = :spid
+            
+        ",['idkh' => $idkh, 'spid' =>]);
+        
+        dd($infokh);die;
     }
     /**
      * Show the form for creating a new resource.

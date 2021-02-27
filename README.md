@@ -40,11 +40,10 @@ php artisan db:seed
 
 ## Step 6: thông tin tài khoản truy cập hệ thống
 Tài khoản Admin:
-admin / 123456
-
-Tài khoản Quản lý kho:
-kho / 123456
+nhanvien@gmail.com / 123456
 
 Tài khoản Khách hàng:
-khachhang / 123456
-...
+khachhang@gmail.com / 123456
+
+- Nếu là tài khoản nhân viên thì sẽ hiển thị nút Quản Lý để vào trang quản lý của admin 
+

@@ -21,6 +21,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::post('/home/info', [HomeController::class, 'info'])->name('home.info');
 Route::post('/home/login', [HomeController::class, 'login'])->name('home.login');
 Route::post('/home/logoff', [HomeController::class, 'logoff'])->name('home.logoff');
+Route::get('/home/logoffadmin', [HomeController::class, 'logoffadmin'])->name('home.logoffadmin');
 Route::post('/home/addToCart', [HomeController::class, 'addToCart'])->name('home.addToCart');
 
 Route::get('/admin', function () {

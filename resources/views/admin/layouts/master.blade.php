@@ -73,7 +73,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Bạn có chắt chắn muốn thoát</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc chắn muốn thoát</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -81,7 +81,7 @@
                 <div class="modal-body">Chọn "Thoát" để thoát khỏi hệ thống hoặc "Không thoát" để ở lại.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Không thoát</button>
-                    <a class="btn btn-primary" href="login.html">Thoát</a>
+                    <a class="btn btn-primary" href="{{route('home.logoffadmin')}}">Thoát</a>
                 </div>
             </div>
         </div>
@@ -152,5 +152,6 @@
         @if (Session::has('sussecs'))
             showSuccessNotification('{{Session::get('sussecs')}}'); 
         @endif
+
     });
 </script>

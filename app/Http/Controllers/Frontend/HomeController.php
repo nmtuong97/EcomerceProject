@@ -220,9 +220,15 @@ class HomeController extends Controller
     public function logoff()
     {
         Session::forget('khachhanginfo');
+        Session::forget('quanlyinfo');
         return redirect(route('home.index'));
     }
-    
+    public function logoffadmin()
+    {
+        Session::forget('khachhanginfo');
+        Session::forget('quanlyinfo');
+        return redirect(route('home.index'));
+    }
     public function addToCart(Request $request){
         $hassize = $request->h_hassize;
         $size = $request->cmbsize;

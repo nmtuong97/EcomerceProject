@@ -19,7 +19,7 @@ class LogInRequest extends FormRequest
 //            print_r('===');
 //            print_r($password);die;
             
-            $info = DB::select(' select name,password from users where email = :email and khach_hang_id is not null ', ['email' => $username]);
+            $info = DB::select(' select name,password from users where email = :email ', ['email' => $username]);
             if(count($info) > 0) {
                 $pass_encode = '';
                 foreach($info as $k => $v) {

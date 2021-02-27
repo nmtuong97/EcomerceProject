@@ -25,9 +25,7 @@
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
                         VND
                     </a>
-                    <a id="a_ql" name='a_ql' href="#" class="flex-c-m trans-04 p-lr-25">
-                        
-                    </a>
+                    
                 </div>
             </div>
         </div>

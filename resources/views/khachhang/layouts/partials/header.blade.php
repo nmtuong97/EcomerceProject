@@ -14,8 +14,8 @@
                     </a>
                     <?php 
                     $infokh = Session::get('khachhanginfo');
-//                    print_r(11111);die;
-                    dd(11111111111111111111);
+//                    dd('qqqqqqqqqqqqqqqqqqqqqqq');
+//                    dd(11111111111111111111);
                     if(!empty($infokh)){
                     ?>
                     <a href="#" id="a_login" class="flex-c-m trans-04 p-lr-25 require-login">

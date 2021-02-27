@@ -51,7 +51,9 @@
 //        Session::put('khachhanginfo', $info);
 //    $infokhachhang = Ses
 //    Session::forget('khachhanginfo');
-        $infokhachhang = Session::get('khachhanginfo');
+//        $infokhachhang = Session::get('khachhanginfo');
+//        print_r(55555555555);
+//        print_r($infokhachhang);
     ?>
     <!-- Header -->
     @include('khachhang.layouts.partials.header')

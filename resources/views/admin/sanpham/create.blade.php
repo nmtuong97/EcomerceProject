@@ -194,40 +194,7 @@
             $('#modal').modal('show');
         }
         
-        
-        function prepareEdit(id, action){
-            ClearErrorMessage();
-            if (id !== '') {
-                $.ajax({
-                url: '{{ route('sanpham.info') }}',
-                type: "GET",
-                data: {
-                    id: id
-                },
-                success: function(response) {
-                    $(response.data).each(function() {
-                        var data = response.data;
-                        $('#modal_title').text('Sửa sản phẩm');
-                        $('#san_pham_ma').val(data.san_pham_ma).attr('disabled', true);
-                        $('#san_pham_ho_lot_vn').val(data.san_pham_ho_lot_vn);
-                        $('#san_pham_ten_vn').val(data.san_pham_ten_vn);
-                        $('#san_pham_email').val(data.san_pham_email).attr('disabled', true);;
-                        $('#san_pham_sdt').val(data.san_pham_sdt);
-                        $('#san_pham_dia_chi').val(data.san_pham_dia_chi);
-                        $('input[name=san_pham_gioi_tinh][value='+data.san_pham_gioi_tinh+']').prop('checked', 'checked');
-                        $('input[name=san_pham_admin][value='+data.san_pham_admin+']').prop('checked', 'checked');
-                        
-
-                        if ($('#_method').length === 0) {                          
-                            $('#san_pham_ma').after('<input id = "_method" type="hidden" name="_method" value="PUT" />');
-                        }
-                        $('#frmMain').attr('action', action);
-                        $('#modal').modal('show');
-                    });
-                }
-            });
-        }  
-        }
+       
         
         function ThucHienIn(){
             

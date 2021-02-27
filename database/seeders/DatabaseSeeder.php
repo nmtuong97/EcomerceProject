@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             don_vi_van_chuyen_table_seeder::class,
             ly_do_table_seeder::class,
             san_pham_table_seeder::class,
+            user_seeder::class,
         ]);
     }
 }

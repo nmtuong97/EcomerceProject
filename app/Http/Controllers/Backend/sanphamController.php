@@ -35,6 +35,55 @@ class sanphamController extends Controller
         return view('admin.sanpham.edit')->with('data', $ds_lsp)
                                          ->with('san_pham', $san_pham);
     }
+    public function editfunction($id)
+    {
+        $san_pham = san_pham::find($id);
+        
+        $ds_lsp = \App\Models\loai_san_pham::all();
+        $ds_ncc = \App\Models\nha_cung_cap::all();
+        $ds_chu_de = \App\Models\chu_de::all();
+        $ds_mau_sac = \App\Models\mau_sac::all();
+        $ds_kich_thuoc = \App\Models\kich_thuoc::all();
+        //nhà cung cấp
+        $ncc_sp = DB::table('nha_cung_cap_san_pham')->where('san_pham_id', '=', $id)->get();
+        $arr_ncc = stdClassToArray($ncc_sp);
+        $arr_ncc_sp = Array();
+        foreach ($arr_ncc as  $value) {
+            $arr_ncc_sp[] = $value['ncc_id'];
+        }
+        // chủ đề
+        $chude_sp = DB::table('chu_de_san_pham')->where('san_pham_id', '=', $id)->get();
+        $arr_cd = stdClassToArray($chude_sp);
+        $arr_chu_de_sp = Array();
+        foreach ($arr_cd as  $value) {
+            $arr_chu_de_sp[] = $value['chu_de_id'];
+        }
+        //màu sắc
+        $mausac_sp = DB::table('mau_sac_san_pham')->where('san_pham_id', '=', $id)->get();
+        $arr_ms = stdClassToArray($mausac_sp);
+        $arr_mau_sac = Array();
+        foreach ($arr_ms as  $value) {
+            $arr_mau_sac[] = $value['mau_sac_id'];
+        }
+        //kích thước
+        $kichthuoc_sp = DB::table('kich_thuoc_san_pham')->where('san_pham_id', '=', $id)->get();
+        $arr_kt = stdClassToArray($kichthuoc_sp);
+        $arr_kich_thuoc = Array();
+        foreach ($arr_kt as  $value) {
+            $arr_kich_thuoc[] = $value['kich_thuoc_id'];
+        }
+        
+        return view('admin.sanpham.editfunction')->with('data', $ds_lsp)
+                                        ->with('ncc', $ds_ncc)
+                                        ->with('arr_ncc', $arr_ncc_sp)
+                                        ->with('arr_chu_de', $arr_chu_de_sp)
+                                        ->with('ds_chu_de', $ds_chu_de)
+                                        ->with('ds_mau_sac', $ds_mau_sac)
+                                        ->with('arr_mau_sac', $arr_mau_sac)
+                                        ->with('arr_kich_thuoc', $arr_kich_thuoc)
+                                        ->with('ds_kich_thuoc', $ds_kich_thuoc)
+                                        ->with('san_pham', $san_pham);
+    }
     public function store(san_pham_create_request $request)
     {
 //        dd($request);
@@ -219,10 +268,7 @@ class sanphamController extends Controller
             print_r(json_encode($arr)) ;
     }
     public function updateinfo(Request $request) {
-
-        $loai = $request->loai_chuc_nang;
         $id_san_pham = $request->id_san_pham;
-        if ($loai == '1') {
             $arr = $request->nha_cung_cap_id;
             DB::table('nha_cung_cap_san_pham')->where('san_pham_id', '=', $id_san_pham)->delete();
             foreach ($arr as  $value) {
@@ -232,7 +278,22 @@ class sanphamController extends Controller
                 $model->save();
                 
             }
-        }
+            $arr_cd = $request->chu_de_id;
+            DB::table('chu_de_san_pham')->where('san_pham_id', '=', $id_san_pham)->delete();
+            foreach ($arr_cd as  $value) {
+                $model = new \App\Models\chu_de_san_pham();
+                $model->chu_de_id = $value;
+                $model->san_pham_id = $id_san_pham;
+                $model->save(); 
+            }
+            $arr_ms = $request->mau_sac_id;
+            DB::table('mau_sac_san_pham')->where('san_pham_id', '=', $id_san_pham)->delete();
+            foreach ($arr_ms as  $value) {
+                $model = new \App\Models\mau_sac_san_pham();
+                $model->mau_sac_id = $value;
+                $model->san_pham_id = $id_san_pham;
+                $model->save(); 
+            }
         Session::flash('sussecs','Thành công');
         return redirect(route('sanpham.index'));
     }

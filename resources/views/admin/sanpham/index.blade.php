@@ -8,8 +8,7 @@
 <style>
    
 </style>
-<link rel="stylesheet" href="{{ asset ('vendor/css/choices.min.css')}}">
-<script src="{{ asset ('vendor/CustomJs/choices.min.js')}}"></script>
+
 <div class="container-fluid">
     <a type="button" class="btn btn-primary" href="{{ route('sanpham.create') }}"><i class="fas fa-plus"></i> Thêm mới</a>
 <!--    <button type="button" class="btn btn-primary" onclick="ThucHienIn();"><i class="fas fa-print"></i> In</button>
@@ -64,7 +63,7 @@
                                                     <button type="submit" class="btn btn-link" ><i class="fas fa-trash-alt function" style="color:red"></i></button>
                                                 </form>
                                                 <!--chuc nang-->
-                                                <button class="btn btn-link" style="color:blue" title="Thêm thông tin" onclick="showModalFunction({{$v->san_pham_id}});" ><i class="fas fa-cog function"></i></button>
+                                                <a class="fas fa-cog function" style="color:blue" title="Sửa" href="{{ route('sanpham.editfunction', ['id' => $v->san_pham_id])}}"></a>
                                                 
                                             </td>
                                             <!--<td>{{ $v->san_pham_hinh_anh }}</td>-->
@@ -101,87 +100,15 @@
                 </div>
 
 <!-- Button trigger modal -->
-
-
-<!-- Modal them moi-->
-<div class="modal fade " id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
-  <div class="modal-dialog modal-lg ">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modal_title">Thêm thông tin cho sản phẩm</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-        @include('admin.partials.error-message')
-      <div class="modal-body">
-        <!--form-->
-        <form name="frmMain" id = "frmMain" method="POST" action="{{ route('sanpham.updateinfo') }}" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <input type="hidden" name="id_san_pham" id="id_san_pham">
-            <div class="form-group row">
-                <label for="san_pham_ma" class="col-sm-2 col-form-label">Loại</label>
-                <div class="col-sm-10">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="loai_chuc_nang" id="loai_chuc_nang_ncc" value="1" checked>
-                        <label class="form-check-label" for="loai_chuc_nang_ncc">
-                          Nhà cung cấp
-                        </label>
-                      </div>
-                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="loai_chuc_nang" id="loai_chuc_nang_" value="2">
-                        <label class="form-check-label" for="san_pham_trang_thai_khong_hien_thi">
-                          Không hiển thị
-                        </label>
-                      </div>
-                </div>
-            </div>  
-            <div class="form-group row">
-                <label for="san_pham_ma" class="col-sm-2 col-form-label">Nhà cung cấp</label>
-                <div class="col-sm-10">
-                    <select name="nha_cung_cap_id[]"id="choices-multiple-remove-button" placeholder="Chọn nhà cung cấp" multiple>
-                        @foreach($ncc as $ncc)
-                        <option id="nha_cung_cap_id_{{$ncc->ncc_id}}" value="{{ $ncc->ncc_id }}">{{ $ncc->ncc_ten_vn }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                
-            </div>
-           
-            
-            <!--end form-->
-      </div>
-      <div class="modal-footer">
-          <button type="submit" class="btn btn-primary"><i class="fas fa-download"></i> Lưu</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-undo-alt"></i> Trở về</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-
 @endsection
 
 @section('custom-scripts')
 <script>
     
         $( document ).ready(function() { 
-            var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-                    removeItemButton: true,
-                    maxItemCount:5,
-                    searchResultLimit:5,
-                    renderChoiceLimit:5
-            });
-//            $("#san_pham_hinh_anh").fileinput({
-//                theme: 'fas',
-//                showUpload: false,
-//                showCaption: false,
-//                browseClass: "btn btn-primary btn-lg",
-//                fileType: "any",
-//                previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-//                overwriteInitial: false
-//              });
             
+           
+                  
         @if ($errors->any())
             $('#modal').modal('show');
         @endif
@@ -217,7 +144,8 @@
             });
         });
         function showModalFunction(id){
-            
+//            var multipleCancelButton = null;
+//            $(".choices").remove();
             $('#id_san_pham').val(id);
              $.ajax({
                 url: '{{ route('sanpham.getInfoSanPham') }}',
@@ -229,13 +157,15 @@
                     $(response.data).each(function() {
                         var data = response.data;
                         $.each(data, function( index, value ) {
-                            $('#nha_cung_cap_id_'+value.ncc_id).attr('selected', 'selected');
+//                            $('#nha_cung_cap_id_'+value.ncc_id).attr('selected', 'selected');
+                            multipleCancelButton.setValueByChoice(value.ncc_id);
                           });
-                        $('#modal').modal('show');
+                         
+                        
                     });
                 }});
-            
-//            $('#modal').modal('show');
+                
+            $('#modal').modal('show');
         }
         
         function prepareAdd(){

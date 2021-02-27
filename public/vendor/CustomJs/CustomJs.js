@@ -29,3 +29,18 @@ function showErorNotification(notification = null){
 function ClearErrorMessage(){
     $('#error-message').remove();
 }
+
+function checkLogin() {
+    if($("#h_loggedin").val() != '1') {
+        openModalLogin(true);
+    }
+}
+
+function openModalLogin(clear=true){
+    if(clear) {
+        ClearErrorMessage();
+        $('#username').val('');
+        $('#password').val('');
+    }
+    $('#loginmodal').addClass('show-modal1').modal('show');
+}

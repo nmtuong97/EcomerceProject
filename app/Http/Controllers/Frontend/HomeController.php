@@ -9,6 +9,8 @@ use App\Models\loai_san_pham;
 use App\Models\san_pham;
 use Illuminate\Support\Facades\DB;
 use Response;
+use App\Http\Requests\LogInRequest;
+use Session;
 class HomeController extends Controller
 {
     /**
@@ -111,8 +113,35 @@ class HomeController extends Controller
             and c.kich_thuoc_ma is not null
             
         ",['masp' => $masp]);
-        return Response::json(Array('sp' => $sp, 'hinh' =>$hinhsp,'kichthuoc' => $kichthuoc));
+        $mausac = DB::select("
+             SELECT c.mau_sac_id num,mau_sac_ma ma,mau_sac_ten_vn ten
+            from san_pham a
+            LEFT JOIN mau_sac_san_pham b on a.san_pham_id = b.san_pham_id
+            LEFT JOIN mau_sac c on b.mau_sac_id = c.mau_sac_id
+
+            WHERE san_pham_ma = :masp
+            and c.mau_sac_ma is not null
+            
+        ",['masp' => $masp]);
+        return Response::json(Array('sp' => $sp, 'hinh' =>$hinhsp,'kichthuoc' => $kichthuoc,'mausac' => $mausac));
         
+    }
+    
+    public function login(LogInRequest $request)
+    {
+//        dd(bcrypt('123456'));
+//        $username = $request->username;
+//        $password = $request->password;
+        $info = Array(
+            'username' => 123,
+            'hoten' => 'Nhut Truong',
+            
+        );
+        Session::put('khachhanginfo', $info);
+        
+//        $value = Session::get('khachhanginfo');
+//        print_r($value);die;
+        return redirect(route('home.index'));
     }
     /**
      * Show the form for creating a new resource.

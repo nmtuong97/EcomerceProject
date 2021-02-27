@@ -19,11 +19,8 @@ use App\Http\Controllers\Frontend\HomeController;
 //});
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::post('/home/info', [HomeController::class, 'info'])->name('home.info');
+Route::post('/home/login', [HomeController::class, 'login'])->name('home.login');
 
-Route::get('/', function () {
-    return view('khachhang.index');
-});
-Route::get('/', [HomeController::class, 'index'])->name('khachhang.index');
 Route::get('/admin', function () {
     return view('admin.index');
 })->name('admin.index');

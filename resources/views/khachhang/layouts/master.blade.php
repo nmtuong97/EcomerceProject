@@ -21,11 +21,16 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/cozastore/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('themes/cozastore/css/main.css') }}">
     
-    <script src="{{ asset('themes/admin/vendor/datatables/jquery.js')}}"></script>
-    <script src="{{ asset('themes/admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('themes/admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{ asset('themes/admin/vendor/datatables/dataTables.responsive.min.js')}}"></script>
-    <script src="{{ asset('themes/admin/vendor/datatables/responsive.bootstrap4.min.js')}}"></script>
+    <link href="{{ asset ('themes/cozastore/vendor/datatables/bootstrap.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset ('themes/cozastore/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset ('themes/cozastore/vendor/datatables/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
+    
+    <script src="{{ asset('themes/cozastore/vendor/datatables/jquery.js')}}"></script>
+    <script src="{{ asset('themes/cozastore/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('themes/cozastore/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('themes/cozastore/vendor/datatables/dataTables.responsive.min.js')}}"></script>
+    <script src="{{ asset('themes/cozastore/vendor/datatables/responsive.bootstrap4.min.js')}}"></script>
+    <link href="{{ asset ('themes/cozastore/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <!-- Các custom style của frontend -->
     <link rel="stylesheet" href="{{ asset('themes/cozastore/css/custom-styles.css') }}">
 
@@ -34,7 +39,19 @@
 </head>
 
 <body class="animsition">
-
+    <?php
+//    use Session;
+//    $info = Array(
+//            'username' => 123,
+//            'hoten' => 'Nhut Truong',
+//            
+//        );
+//        Session::put('khachhanginfo', $info);
+//    $infokhachhang = Ses
+//    Session::forget('khachhanginfo');
+        $infokhachhang = Session::get('khachhanginfo');
+        print_r($infokhachhang);
+    ?>
     <!-- Header -->
     @include('khachhang.layouts.partials.header')
 
@@ -46,28 +63,61 @@
 
     <!-- Footer -->
     @include('khachhang.layouts.partials.footer')
+    <div class="wrap-modal1 js-modal1 p-t-60 p-b-20" id="loginmodal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+        <!--<div class="overlay-modal1 js-hide-modal1"></div>-->
+    <div class="modal-dialog modal-open">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal_title">Đăng nhập</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          @include('khachhang.layouts.partials.error-message')
+        <div class="modal-body">
+          <!--form-->
+          <form name="frmMain" id = "frmMain" method="POST" action="{{route('home.login')}}">
+              {{ csrf_field() }}
+              <div class="form-group row">
+                  <label for="username" class="col-sm-4 col-form-label">Email</label>
+                  <div class="col-sm-8">
+                      <input type="text" class="form-control require-row" value="{{ old('username') }}" name="username" id="username" placeholder="" >
+                  </div>
+              </div>  
+              <div class="form-group row">
+                  <label for="password" class="col-sm-4 col-form-label">Mật khẩu</label>
+                  <div class="col-sm-8">
+                      <input type="password" class="form-control require-row" value="{{ old('password') }}" name="password" id="password" placeholder="">
+                  </div>
+              </div>
 
+              <!--end form-->
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-user-circle"></i> Đăng nhập</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-undo-alt"></i> Trở về</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
     <!-- Back to top -->
     <div class="btn-back-to-top" id="myBtn">
         <span class="symbol-btn-back-to-top">
             <i class="zmdi zmdi-chevron-up"></i>
         </span>
     </div>
-
-
+    <form id="varhidden" name="varhidden" method="POST">
+        {{ csrf_field() }}
+        <input type="hidden" name="h_loggedin" id="h_loggedin" value="0">
+    </form>
+    
     <script src="{{ asset('themes/cozastore/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('themes/cozastore/vendor/animsition/js/animsition.min.js') }}"></script>
     <script src="{{ asset('themes/cozastore/vendor/bootstrap/js/popper.js') }}"></script>
     <script src="{{ asset('themes/cozastore/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('themes/cozastore/vendor/select2/select2.min.js') }}"></script>
-    <script>
-        $(".js-select2").each(function() {
-            $(this).select2({
-                minimumResultsForSearch: 20,
-                dropdownParent: $(this).next('.dropDownSelect2')
-            });
-        })
-    </script>
+    <script src="{{ asset('vendor/CustomJs/CustomJs.js') }}"></script>
     <script src="{{ asset('themes/cozastore/vendor/daterangepicker/moment.min.js') }}"></script>
     <script src="{{ asset('themes/cozastore/vendor/daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('themes/cozastore/vendor/slick/slick.min.js') }}"></script>
@@ -78,6 +128,7 @@
     </script>
     <script src="{{ asset('themes/cozastore/vendor/MagnificPopup/jquery.magnific-popup.min.js') }}"></script>
     <script>
+        
         $('.gallery-lb').each(function() { // the containers for all your galleries
             $(this).magnificPopup({
                 delegate: 'a', // the selector for gallery item
@@ -88,6 +139,25 @@
                 mainClass: 'mfp-fade'
             });
         });
+        $(document).ready(function() {
+            @if(empty($infokhachhang))
+                $("#h_loggedin").val('0');
+            @else    
+                $("#h_loggedin").val('1');
+            @endif
+            @if ($errors->any())
+                $('#loginmodal').addClass('show-modal1').modal('show');
+            @endif
+            
+//            $('#a_login').on('click',function(e){
+//                e.preventDefault();
+//                ClearErrorMessage();
+//                $('#username').val('');
+//                $('#password').val('');
+//                $('#loginmodal').addClass('show-modal1').modal('show');
+//            });
+        });
+        
     </script>
     <script src="{{ asset('themes/cozastore/vendor/isotope/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('themes/cozastore/vendor/sweetalert/sweetalert.min.js') }}"></script>

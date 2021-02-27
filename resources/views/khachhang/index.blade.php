@@ -278,7 +278,7 @@
 						<div class="block2-pic hov-img0 ">
                                                     
                                                     <img src="{{ asset('storage/photo/'.$sp->san_pham_hinh_anh) }}" alt="IMG-PRODUCT" class="sp_avatar">
-                                                    <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" onclick="loaddetail('{{$sp->san_pham_ma}}')">
+                                                    <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 detailproduct" onclick="loaddetail('{{$sp->san_pham_ma}}')">
                                                         Xem
                                                     </a>
 						</div>
@@ -317,7 +317,7 @@
 
 
     <!-- Modal1 -->
-    <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+    <div class="wrap-modal1 js-modal1 p-t-60 p-b-20" id="jsmodal1">
         <div class="overlay-modal1 js-hide-modal1"></div>
         <div class="container">
             <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
@@ -424,8 +424,9 @@
 
                                     <div class="size-204 respon6-next">
                                         <div class="rs1-select2 bor8 bg0">
-                                            <select class="js-select2" name="time">
-                                                <option>Chọn màu sắc</option>
+                                            <input type="hidden" name="h_hascolor" id="h_hascolor" value="0">
+                                            <select class="js-select2" name="time" name='cmbcolor' id="cmbcolor">
+                                                <!--<option>Chọn màu sắc</option>-->
 <!--                                                <option>Red</option>
                                                 <option>Blue</option>
                                                 <option>White</option>
@@ -486,8 +487,9 @@
     <form id="frminfo" name="frminfo" action="{{ route('home.info') }}" method="post">
     <input type="hidden" name="masp" id="masp"/>
     @csrf
+    </form>
     
-</form>
+    
 @endsection
 
 @section('custom-css')
@@ -506,6 +508,10 @@
 <script>
     path = '<?php echo asset('storage/photo/'); ?>';
     $(document).ready(function(){
+        $('.js-show-modal1').on('click',function(e){
+            e.preventDefault();
+            $('#jsmodal1').addClass('show-modal1');
+        });
         $("#txtsearch").on("keyup", function() {
           var value = $(this).val().toLowerCase();
           $(".search_product").filter(function() {
@@ -544,6 +550,12 @@
     }
     
     function loaddetail(masp){
+        
+//        $('.detailproduct').on('click',function(e){
+//            e.preventDefault();
+//            $('.js-modal1').addClass('show-modal1');
+//        });
+        
         $("#frminfo #masp").val(masp);
         var form_action = $("#frminfo").attr("action");
         $.ajax({
@@ -601,6 +613,22 @@
                         $("#cmbsize").parent().parent().parent().hide();
                         $("#h_hassize").val(0);
                     }
+                    
+                    var arr_color = data['mausac'];
+                    if (arr_color.length > 0) {
+                        var i;
+                        var option = "<option value=''>Chọn màu sắc</option>";
+                        arr_color.forEach(function(item){
+                            option += "<option value='"+item.ma+"'>"+item.ten+"</option>";
+                        });
+                        $("#h_hascolor").val(1);
+                        $("#cmbcolor").html(option);
+                        $("#cmbcolor").parent().parent().parent().show();
+                    } else {
+                        $("#cmbcolor").parent().parent().parent().hide();
+                        $("#h_hascolor").val(0);
+                    }
+                    
                 },
                 error: function (data) {
                 }

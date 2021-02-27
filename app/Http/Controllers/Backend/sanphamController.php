@@ -72,7 +72,6 @@ class sanphamController extends Controller
         foreach ($arr_kt as  $value) {
             $arr_kich_thuoc[] = $value['kich_thuoc_id'];
         }
-        
         return view('admin.sanpham.editfunction')->with('data', $ds_lsp)
                                         ->with('ncc', $ds_ncc)
                                         ->with('arr_ncc', $arr_ncc_sp)
@@ -268,17 +267,18 @@ class sanphamController extends Controller
             print_r(json_encode($arr)) ;
     }
     public function updateinfo(Request $request) {
-        $id_san_pham = $request->id_san_pham;
-            $arr = $request->nha_cung_cap_id;
-            DB::table('nha_cung_cap_san_pham')->where('san_pham_id', '=', $id_san_pham)->delete();
-            foreach ($arr as  $value) {
-                $model = new \App\Models\nha_cung_cap_san_pham();
-                $model->ncc_id = $value;
-                $model->san_pham_id = $id_san_pham;
-                $model->save();
-                
-            }
-            $arr_cd = $request->chu_de_id;
+            $id_san_pham = $request->id_san_pham;
+            $arr = isset($request->nha_cung_cap_id) ? $request->nha_cung_cap_id: Array();
+                DB::table('nha_cung_cap_san_pham')->where('san_pham_id', '=', $id_san_pham)->delete();
+                foreach ($arr as  $value) {
+                    $model = new \App\Models\nha_cung_cap_san_pham();
+                    $model->ncc_id = $value;
+                    $model->san_pham_id = $id_san_pham;
+                    $model->save();
+
+                }
+            
+            $arr_cd = isset($request->chu_de_id) ? $request->chu_de_id: Array();
             DB::table('chu_de_san_pham')->where('san_pham_id', '=', $id_san_pham)->delete();
             foreach ($arr_cd as  $value) {
                 $model = new \App\Models\chu_de_san_pham();
@@ -286,11 +286,21 @@ class sanphamController extends Controller
                 $model->san_pham_id = $id_san_pham;
                 $model->save(); 
             }
-            $arr_ms = $request->mau_sac_id;
+            
+            $arr_ms = isset($request->mau_sac_id) ? $request->mau_sac_id: Array();
             DB::table('mau_sac_san_pham')->where('san_pham_id', '=', $id_san_pham)->delete();
             foreach ($arr_ms as  $value) {
                 $model = new \App\Models\mau_sac_san_pham();
                 $model->mau_sac_id = $value;
+                $model->san_pham_id = $id_san_pham;
+                $model->save(); 
+            }
+            
+            $arr_kt = isset($request->kich_thuoc_id) ? $request->kich_thuoc_id: Array();
+            DB::table('kich_thuoc_san_pham')->where('san_pham_id', '=', $id_san_pham)->delete();
+            foreach ($arr_kt as  $value) {
+                $model = new \App\Models\kich_thuoc_san_pham();
+                $model->kich_thuoc_id = $value;
                 $model->san_pham_id = $id_san_pham;
                 $model->save(); 
             }

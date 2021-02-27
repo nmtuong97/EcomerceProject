@@ -240,7 +240,11 @@ class HomeController extends Controller
             from gio_hang a
             where a.khach_hang_id = :idkh and a.san_pham_id = :idsp
             
+<<<<<<< HEAD
         ",['idkh' => $idkh, 'idsp' =>$idsp]);
+=======
+        ",['idkh' => $idkh, 'spid' => '']);
+>>>>>>> 7194a9358ab6501160f8d929e57b91c1e3101f63
         
         $arr_insert = Array(
             'khach_hang_id' => $idkh,

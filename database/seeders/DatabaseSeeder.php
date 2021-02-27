@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            slider_seeder::class,
             loai_san_pham_table_seeder::class,
             chu_de_table_seeder::class,
             nha_san_xuat_table_seeder::class,
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
             don_vi_van_chuyen_table_seeder::class,
             ly_do_table_seeder::class,
             san_pham_table_seeder::class,
+            user_seeder::class,
         ]);
     }
 }

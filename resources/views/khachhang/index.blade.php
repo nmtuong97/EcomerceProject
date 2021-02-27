@@ -510,7 +510,10 @@
     token = '{{csrf_token()}}';
     $(document).ready(function(){
         $('#btnThemVaoGio').on('click',function(e){
-            addToCart(token,'{{ route("home.addToCart") }}','frmAddToCart',$("#h_hassize").val(),$("#h_hascolor").val(),$("#cmbsize").val(),$("#cmbcolor").val(),$("#numproduct").val());
+            addToCart(token,'{{ route("home.addToCart") }}','frmAddToCart',$("#h_hassize").val(),$("#h_hascolor").val(),$("#cmbsize").val(),$("#cmbcolor").val(),$("#numproduct").val(),$("#frminfo #masp").val(),'jsmodal1');
+            setTimeout(function(){ 
+                            location.reload();  
+                        }, 2000);
         });
         $('.js-show-modal1').on('click',function(e){
             e.preventDefault();

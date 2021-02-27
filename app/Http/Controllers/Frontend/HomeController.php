@@ -20,9 +20,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-//        print_r($request);
-//        print_r($_POST);
-//        print_r($_GET);
         $slider = slider::all();
         $loaisp = loai_san_pham::all();
         
@@ -51,10 +48,34 @@ class HomeController extends Controller
 
             limit 0,49
         ');
+        $infokh = Session::get('khachhanginfo');
+        
+        $idkh = isset($infokh['idkh']) ? $infokh['idkh'] : '';
+        $giohang = DB::select('
+            SELECT a.san_pham_id,
+            san_pham_ma,
+            san_pham_ten,
+            san_pham_ten_vn,
+            san_pham_ten_en,
+            san_pham_gia_goc,
+            san_pham_gia_ban,
+            san_pham_hinh_anh,
+            san_pham_mo_ta,
+            san_pham_trang_thai,
+            c.gio_hang_so_luong
+
+            FROM gio_hang c
+            left join san_pham a on c.san_pham_id = a.san_pham_id
+            
+            where c.khach_hang_id = :idkh
+            ORDER BY c.gio_hang_cap_nhat DESC
+
+        ',['idkh' => $idkh]);
         
         return view('khachhang.index')
         ->with('danhsach', $slider)
         ->with('dssanpham', $dssanpham)
+        ->with('giohang', $giohang)
         ->with('loaisp', $loaisp);
     }
     
@@ -133,6 +154,7 @@ class HomeController extends Controller
         $username = $request->username;
         $data = DB::select("
             SELECT a.khach_hang_id,
+            a.nhan_vien_id,
             b.khach_hang_email,
             concat(b.khach_hang_ho_lot_vn,' ', b.khach_hang_ten_vn) hoten,
             case WHEN b.khach_hang_gioi_tinh = '1' then 'Nam'
@@ -140,25 +162,58 @@ class HomeController extends Controller
             ELSE 'Khác' end gioitinh,
             b.khach_hang_ngay_sinh,
             b.khach_hang_sdt,
-            b.khach_hang_dia_chi
+            b.khach_hang_dia_chi,
+            
+            c.nhan_vien_ma,
+            concat(c.nhan_vien_ho_lot_vn,' ',c.nhan_vien_ten_vn) hotennv,
+            case when c.nhan_vien_gioi_tinh = 1 then 'Nam'
+            when c.nhan_vien_gioi_tinh = 1 then 'Nữ'
+            else 'Khác' end gioitinhnv,
+            c.nhan_vien_dia_chi,
+            c.nhan_vien_sdt,
+            c.nhan_vien_email,
+            c.nhan_vien_admin,
+            c.nhan_vien_hinh_anh
+
             from users a
             left join khach_hang b on a.khach_hang_id = b.khach_hang_id
+            left join nhan_vien c on a.nhan_vien_id = c.nhan_vien_id
             WHERE a.email = :username
             
         ",['username' => $username]);
         $info = Array();
+        $infoql = Array();
+        $idnv = '';
         foreach($data as $k => $v) {
-            $info['idkh'] = $v->khach_hang_id;
-            $info['email'] = $v->khach_hang_email;
-            $info['hoten'] = $v->hoten;
-            $info['gioitinh'] = $v->gioitinh;
-            $info['ngaysinh'] = $v->khach_hang_ngay_sinh;
-            $info['sdt'] = $v->khach_hang_sdt;
-            $info['diachi'] = $v->khach_hang_dia_chi;
-            
+            if($v->khach_hang_id != ''){
+                $info['idkh'] = $v->khach_hang_id;
+                $info['email'] = $v->khach_hang_email;
+                $info['hoten'] = $v->hoten;
+                $info['gioitinh'] = $v->gioitinh;
+                $info['ngaysinh'] = $v->khach_hang_ngay_sinh;
+                $info['sdt'] = $v->khach_hang_sdt;
+                $info['diachi'] = $v->khach_hang_dia_chi;
+            }
+            if ($v->nhan_vien_id != '') {
+                $infoql['idnv'] = $v->nhan_vien_id;
+                $infoql['manv'] = $v->nhan_vien_ma;
+                $infoql['hoten'] = $v->hotennv;
+                $infoql['gioitinh'] = $v->gioitinhnv;
+                $infoql['diachi'] = $v->nhan_vien_dia_chi;
+                $infoql['sdt'] = $v->nhan_vien_sdt;
+                $infoql['email'] = $v->nhan_vien_email;
+                $infoql['admin'] = $v->nhan_vien_admin;
+                $infoql['hinhanh'] = $v->nhan_vien_hinh_anh;
+                
+            }
         }
+        
         Session::forget('khachhanginfo');
         Session::put('khachhanginfo', $info);
+        
+        Session::forget('quanlyinfo');
+        Session::put('quanlyinfo', $infoql);
+        
         return redirect(route('home.index'));
     }
     
@@ -169,30 +224,37 @@ class HomeController extends Controller
     }
     
     public function addToCart(Request $request){
-//        dd($request);
-        
-//        "h_hassize" => "1"
-//      "cmbsize" => "S"
-//      "h_hascolor" => "1"
-//      "cmbcolor" => "DEN"
-//      "numproduct" => "1"
         $hassize = $request->h_hassize;
         $size = $request->cmbsize;
         $hascolor = $request->h_hascolor;
         $color = $request->cmbcolor;
         $numproduct = $request->numproduct;
+        $masp = $request->masp;
         
         $infokh = Session::get('khachhanginfo');
         $idkh = $infokh['idkh'];
         
-        $data = DB::select("
+        $idsp = DB::table('san_pham')->where('san_pham_ma', $masp)->value('san_pham_id');
+        $datagio = DB::select("
             SELECT a.khach_hang_id, a.san_pham_id
             from gio_hang a
-            where a.khach_hang_id = :idkh and a.san_pham_id = :spid
+            where a.khach_hang_id = :idkh and a.san_pham_id = :idsp
             
-        ",['idkh' => $idkh, 'spid' =>]);
+        ",['idkh' => $idkh, 'idsp' =>$idsp]);
         
-        dd($infokh);die;
+        $arr_insert = Array(
+            'khach_hang_id' => $idkh,
+            'san_pham_id' => $idsp,
+            'gio_hang_so_luong' => $numproduct
+        );
+        if (empty($datagio)) {
+            DB::table('gio_hang')->insert($arr_insert);
+        } else {
+            DB::update("update gio_hang set gio_hang_so_luong = gio_hang_so_luong+ :sl where khach_hang_id = :idkh and san_pham_id = :idsp ",
+                ['sl' => $numproduct, 'idkh' =>$idkh, 'idsp' => $idsp]
+            );
+        }
+//        dd($idsp.'==='.$idkh);die;
     }
     /**
      * Show the form for creating a new resource.

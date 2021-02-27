@@ -73,7 +73,7 @@ function runlogoff(){
     });   
 }
 
-function addToCart(token,url,frmname,hassize =0,hascolor=0,choosesize=0,choosecolor=0,amount=0){
+function addToCart(token,url,frmname,hassize =0,hascolor=0,choosesize=0,choosecolor=0,amount=0,masp = '',idmodal){
 //    alert($("#h_hascolor").val());
 //    alert($("#h_hassize").val());
     var str = '';
@@ -97,22 +97,19 @@ function addToCart(token,url,frmname,hassize =0,hascolor=0,choosesize=0,chooseco
         $("#error-message").html(str);
     } else {
         DeleteErrorMessage();
-        alert('them vao gio thanh cong');
+//        alert('them vao gio thanh cong');
+        $('#'+idmodal).removeClass('show-modal1');
         $.ajax({
             type: 'POST',
             url: url,
-            data: $('#'+frmname).serialize()+"&_token="+token,
+            data: $('#'+frmname).serialize()+"&_token="+token+'&masp='+masp,
             async: false,
             success: function () {
-                alert('11111');
-//                Swal.fire(
-//                    'Xóa!',
-//                    'Bạn đã xóa thành công.',
-//                    'success'
-//                  ),
-//                setTimeout(function(){ 
-//                    location.reload();  
-//                }, 1000);
+                
+                showSuccessNotification('Thêm vào giỏ hàng thành công.');
+            },
+            error: function(data){
+                showErorNotification('Thêm vào giỏ hàng không thành công.');
             }
         });
     }

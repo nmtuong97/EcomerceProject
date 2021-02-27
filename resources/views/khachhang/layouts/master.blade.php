@@ -125,7 +125,14 @@
     </script>
     <script src="{{ asset('themes/cozastore/vendor/MagnificPopup/jquery.magnific-popup.min.js') }}"></script>
     <script>
-        
+    <?php  
+    $infoql = Session::get('quanlyinfo');
+    if(empty($infoql)) {
+    ?>
+        boolql = '0';
+    <?php }else { ?>
+        boolql = '1';
+    <?php } ?>
         $('.gallery-lb').each(function() { // the containers for all your galleries
             $(this).magnificPopup({
                 delegate: 'a', // the selector for gallery item
@@ -145,6 +152,11 @@
             @if ($errors->any())
                 $('#loginmodal').addClass('show-modal1').modal('show');
             @endif
+            
+            if(boolql != '0') {
+                location.href = "{{route('admin.index')}}";
+            }
+            
             if(returnResultLogIn() != '1'){
                 $("#a_login").addClass('require-login');
                 $("#a_login").html('Đăng nhập');

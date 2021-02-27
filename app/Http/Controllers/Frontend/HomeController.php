@@ -137,7 +137,7 @@ class HomeController extends Controller
             concat(b.khach_hang_ho_lot_vn,' ', b.khach_hang_ten_vn) hoten,
             case WHEN b.khach_hang_gioi_tinh = '1' then 'Nam'
             WHEN b.khach_hang_gioi_tinh = '2' then 'Nữ'
-            ELSE 'Khác' end gioitinh
+            ELSE 'Khác' end gioitinh,
             b.khach_hang_ngay_sinh,
             b.khach_hang_sdt,
             b.khach_hang_dia_chi
@@ -158,6 +158,12 @@ class HomeController extends Controller
         }
         Session::forget('khachhanginfo');
         Session::put('khachhanginfo', $info);
+        return redirect(route('home.index'));
+    }
+    
+    public function logoff()
+    {
+        Session::forget('khachhanginfo');
         return redirect(route('home.index'));
     }
     /**

@@ -278,10 +278,17 @@
     });
     
     $('.require-login').on('click',function(){
-//        alert(11111111);
         checkLogin();
     });
 
-    
+    $('#a_login').on('click',function(){
+        if(returnResultLogIn() != '1') {
+            
+            checkLogin();
+        } else {
+            runlogoff();
+        }
+        
+    });
 
 })(jQuery);

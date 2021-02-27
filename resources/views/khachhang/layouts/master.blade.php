@@ -42,17 +42,8 @@
 
 <body class="animsition">
     <?php
-//    use Session;
-//    $info = Array(
-//            'username' => 123,
-//            'hoten' => 'Nhut Truong',
-//            
-//        );
-//        Session::put('khachhanginfo', $info);
-//    $infokhachhang = Ses
-//    Session::forget('khachhanginfo');
-//        $infokhachhang = Session::get('khachhanginfo');
-//        print_r(55555555555);
+        $infokhachhang = Session::get('khachhanginfo');
+        $tenkhachhang = isset($infokhachhang['hoten']) ? $infokhachhang['hoten'] : '';
 //        print_r($infokhachhang);
     ?>
     <!-- Header -->
@@ -114,6 +105,9 @@
         {{ csrf_field() }}
         <input type="hidden" name="h_loggedin" id="h_loggedin" value="0">
     </form>
+    <form id="frmLogoff" name="frmLogoff" method="POST" action="{{route('home.logoff')}}">
+        {{ csrf_field() }}
+    </form>
     
     <script src="{{ asset('themes/cozastore/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('themes/cozastore/vendor/animsition/js/animsition.min.js') }}"></script>
@@ -151,7 +145,15 @@
             @if ($errors->any())
                 $('#loginmodal').addClass('show-modal1').modal('show');
             @endif
-            
+            if(returnResultLogIn() != '1'){
+                $("#a_login").addClass('require-login');
+                $("#a_login").html('Đăng nhập');
+            } else {
+                $("#a_login").addClass('logoff');
+                $("#a_login").html('Đăng xuất');
+                $("#a_name").addClass(' trans-09 p-lr-40').html(' Xin chào, {{$tenkhachhang}} ');
+                
+            }
 //            $('#a_login').on('click',function(e){
 //                e.preventDefault();
 //                ClearErrorMessage();

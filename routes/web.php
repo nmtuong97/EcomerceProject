@@ -20,6 +20,7 @@ use App\Http\Controllers\Frontend\HomeController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::post('/home/info', [HomeController::class, 'info'])->name('home.info');
 Route::post('/home/login', [HomeController::class, 'login'])->name('home.login');
+Route::post('/home/logoff', [HomeController::class, 'logoff'])->name('home.logoff');
 
 Route::get('/admin', function () {
     return view('admin.index');

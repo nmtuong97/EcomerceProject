@@ -29,7 +29,9 @@ function showErorNotification(notification = null){
 function ClearErrorMessage(){
     $('#error-message').remove();
 }
-
+function returnResultLogIn() {
+    return $("#h_loggedin").val();
+}
 function checkLogin() {
 //    alert('check login '+$("#h_loggedin").val());
     if($("#h_loggedin").val() != '1') {
@@ -49,4 +51,8 @@ function openModalLogin(clear=true){
         $('#password').val('');
     }
     $('#loginmodal').addClass('show-modal1').modal('show');
+}
+
+function runlogoff(){
+    $("#frmLogoff").submit();
 }

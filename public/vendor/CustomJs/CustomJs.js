@@ -94,7 +94,7 @@ function addToCart(token,url,frmname,hassize =0,hascolor=0,choosesize=0,chooseco
     }
     if(str != '') {
         str = '<ul>'+str+'</ul>';
-        $("#error-message").html(str);
+        $("#error-message-cart").html(str);
     } else {
         DeleteErrorMessage();
 //        alert('them vao gio thanh cong');
@@ -105,11 +105,16 @@ function addToCart(token,url,frmname,hassize =0,hascolor=0,choosesize=0,chooseco
             data: $('#'+frmname).serialize()+"&_token="+token+'&masp='+masp,
             async: false,
             success: function () {
-                
                 showSuccessNotification('Thêm vào giỏ hàng thành công.');
+                setTimeout(function(){ 
+                    location.reload();  
+                }, 2000);
             },
             error: function(data){
                 showErorNotification('Thêm vào giỏ hàng không thành công.');
+                setTimeout(function(){ 
+                    location.reload();  
+                }, 2000);
             }
         });
     }

@@ -3,37 +3,40 @@
     Trang chủ
 @endsection
 @section('main-content')
+
 <section class="section-slide">
-		<div class="wrap-slick1">
+		<div class="wrap-slick1 rs1-slick1">
 			<div class="slick1">
                             @foreach($danhsach as $slider)
 				<div class="item-slick1" style="background-image: url({{ asset('storage/slider/'.$slider->slider_ten_hinh) }});">
 					<div class="container h-full">
-						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+						<div class="flex-col-l-m h-full p-t-100 p-b-30">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-                                                                   {{ $slider->slider_header}}
+								<span class="ltext-202 cl2 respon2">
+									{{ $slider->slider_header}}
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+								<h2 class="ltext-104 cl2 p-t-19 p-b-43 respon1">
 									{{$slider->slider_content}}
 								</h2>
 							</div>
 								
-							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-<!--								<a href="" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+<!--							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
+								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 									Shop Now
-								</a>-->
-							</div>
+								</a>
+							</div>-->
 						</div>
 					</div>
 				</div>
-                            @endforeach
+                             @endforeach
 			</div>
 		</div>
 	</section>
+
+
 
 <section class="bg0 p-t-23 p-b-140">
 		<div class="container">
@@ -394,7 +397,7 @@
                             <p class="stext-102 cl3 p-t-23">
                                <span id="product_note"></span>
                             </p>
-                            <div id="error-message" class="alert-danger">
+                            <div id="error-message-cart" class="alert-danger">
                                 <!--<ul>-->
 <!--                                    <li>Mã loại sản phẩm không được để trống</li>
                                     <li>Tên sản phẩm không được để trống</li>-->
@@ -510,10 +513,10 @@
     token = '{{csrf_token()}}';
     $(document).ready(function(){
         $('#btnThemVaoGio').on('click',function(e){
-            addToCart(token,'{{ route("home.addToCart") }}','frmAddToCart',$("#h_hassize").val(),$("#h_hascolor").val(),$("#cmbsize").val(),$("#cmbcolor").val(),$("#numproduct").val(),$("#frminfo #masp").val(),'jsmodal1');
-            setTimeout(function(){ 
-                            location.reload();  
-                        }, 2000);
+            if(returnResultLogIn() == '1') {
+                addToCart(token,'{{ route("home.addToCart") }}','frmAddToCart',$("#h_hassize").val(),$("#h_hascolor").val(),$("#cmbsize").val(),$("#cmbcolor").val(),$("#numproduct").val(),$("#frminfo #masp").val(),'jsmodal1');
+                
+            }
         });
         $('.js-show-modal1').on('click',function(e){
             e.preventDefault();

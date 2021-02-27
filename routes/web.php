@@ -75,10 +75,23 @@ Route::post('admin/nhanvien/store', 'App\Http\Controllers\Backend\nhanvienContro
 Route::get('admin/nhanvien/infonhanvien', 'App\Http\Controllers\Backend\nhanvienController@getinfo')->name('nhanvien.info');
 Route::put('admin/nhanvien/update/{id}', 'App\Http\Controllers\Backend\nhanvienController@update')->name('nhanvien.update');
 Route::DELETE('admin/nhanvien/destroy/{id}', 'App\Http\Controllers\Backend\nhanvienController@destroy')->name('nhanvien.destroy');
-
+//kích thước
+Route::get('/admin/kichthuoc', 'App\Http\Controllers\Backend\kichthuocController@index')->name('kichthuoc.index');
+Route::get('admin/kichthuoc/edit/{id}', 'App\Http\Controllers\Backend\kichthuocController@edit')->name('kichthuoc.edit');
+Route::get('admin/kichthuoc/editfunction/{id}', 'App\Http\Controllers\Backend\kichthuocController@editfunction')->name('kichthuoc.editfunction');
+Route::get('/admin/kichthuoc/create', 'App\Http\Controllers\Backend\kichthuocController@create')->name('kichthuoc.create');
+Route::post('admin/kichthuoc/store', 'App\Http\Controllers\Backend\kichthuocController@store')->name('kichthuoc.store');
+Route::get('admin/kichthuoc/infomausac', 'App\Http\Controllers\Backend\kichthuocController@getinfo')->name('kichthuoc.info');
+Route::post('admin/kichthuoc/updateinfo', 'App\Http\Controllers\Backend\kichthuocController@updateinfo')->name('kichthuoc.updateinfo');
+Route::get('admin/kichthuoc/getInfokichthuoc', 'App\Http\Controllers\Backend\kichthuocController@getInfokichthuoc')->name('kichthuoc.getInfokichthuoc');
+Route::put('admin/kichthuoc/update/{id}', 'App\Http\Controllers\Backend\kichthuocController@update')->name('kichthuoc.update');
+Route::DELETE('admin/kichthuoc/destroy/{id}', 'App\Http\Controllers\Backend\kichthuocController@destroy')->name('kichthuoc.destroy');
+Route::POST('admin/kichthuoc/deleteavatar/{id}', 'App\Http\Controllers\Backend\kichthuocController@deleteAvatar')->name('kichthuoc.deleteavatar');
+Route::POST('admin/kichthuoc/deleteimage/{id}', 'App\Http\Controllers\Backend\kichthuocController@deleteimage')->name('kichthuoc.deleteimage');
 //Sản phẩm
 Route::get('/admin/sanpham', 'App\Http\Controllers\Backend\sanphamController@index')->name('sanpham.index');
 Route::get('admin/sanpham/edit/{id}', 'App\Http\Controllers\Backend\sanphamController@edit')->name('sanpham.edit');
+Route::get('admin/sanpham/editfunction/{id}', 'App\Http\Controllers\Backend\sanphamController@editfunction')->name('sanpham.editfunction');
 Route::get('/admin/sanpham/create', 'App\Http\Controllers\Backend\sanphamController@create')->name('sanpham.create');
 Route::post('admin/sanpham/store', 'App\Http\Controllers\Backend\sanphamController@store')->name('sanpham.store');
 Route::post('admin/sanpham/updateinfo', 'App\Http\Controllers\Backend\sanphamController@updateinfo')->name('sanpham.updateinfo');

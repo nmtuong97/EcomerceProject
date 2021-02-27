@@ -29,3 +29,7 @@ function stripUnicode($str) {
 
     return $str;
 }
+
+function stdClassToArray($array){
+    return json_decode(json_encode($array), true);
+}

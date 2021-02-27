@@ -13,103 +13,85 @@
     <script src="{{ asset('vendor/bootstrap-fileinput/themes/explorer-fas/theme.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/bootstrap-fileinput/themes/fas/theme.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/tinymce/tinymce.min.js') }}" type="text/javascript"></script>
+    
+    <link rel="stylesheet" href="{{ asset ('vendor/css/choices.min.css')}}">
+    <script src="{{ asset ('vendor/CustomJs/choices.min.js')}}"></script>
 <style>
 
 </style>
 <div class="container-fluid">
     <!--<a class="btn btn-primary" href="{{route('sanpham.index')}}"><i class="fas fa-undo-alt"></i> Trở về</a>-->    
+    <div class="col-12 h2" align='center'>Cập nhật thông tin của sản phẩm: {{ $san_pham->san_pham_ten_vn }}</div>
     @include('admin.partials.error-message')
-    <form name="frmMain" id = "frmMain" method="POST" action="{{ route('sanpham.update', $san_pham->san_pham_id) }}" enctype="multipart/form-data">
+    <form name="frmMain" id = "frmMain" method="POST" action="{{ route('sanpham.updateinfo') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <input type="hidden" name="_method" value="PUT" />
+            <input type="hidden" name="id_san_pham" id="id_san_pham" value="{{ $san_pham->san_pham_id }}">
             <div class="form-group row">
-                <label for="san_pham_ma" class="col-sm-2 col-form-label">Mã sản phẩm</label>
+                <label for="san_pham_ma" class="col-sm-2 col-form-label">Nhà cung cấp</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control require-row" value="{{ $san_pham->san_pham_ma }}" name="san_pham_ma" id="san_pham_ma" placeholder="VD: SP001, SP002..." >
-                </div>
-            </div>  
-            <div class="form-group row">
-                <label for="san_pham_ten_vn" class="col-sm-2 col-form-label">Tên sản phẩm</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control require-row" value="{{ $san_pham->san_pham_ten_vn }}" name="san_pham_ten_vn" id="san_pham_ten_vn">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="san_pham_ten_en" class="col-sm-2 col-form-label">Tên tiếng anh</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" value="{{ $san_pham->san_pham_ten_en }}" name="san_pham_ten_en" id="san_pham_ten_en">
+                    <select name="nha_cung_cap_id[]"id="nha_cung_cap" placeholder="Chọn nhà cung cấp" multiple>
+                        @foreach($ncc as $ncc)
+                        @if (in_array($ncc->ncc_id, $arr_ncc))
+                            <option value="{{ $ncc->ncc_id }}" selected="selected">{{ $ncc->ncc_ten_vn }}</option>
+                        @else
+                            <option value="{{ $ncc->ncc_id }}" >{{ $ncc->ncc_ten_vn }}</option>
+                        @endif
+                            
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="san_pham_gia_goc" class="col-sm-2 col-form-label">Giá gốc</label>
+                <label for="san_pham_ma" class="col-sm-2 col-form-label">Chủ đề</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control require-row tien-te" value="{{ $san_pham->san_pham_gia_goc }}" name="san_pham_gia_goc" id="san_pham_gia_goc">
+                    <select name="chu_de_id[]"id="chu_de_id" placeholder="Chọn chủ đề cho sản phẩm" multiple>
+                        @foreach($ds_chu_de as $chu_de)
+                        @if (in_array($chu_de->chu_de_id, $arr_chu_de))
+                            <option value="{{ $chu_de->chu_de_id }}" selected="selected">{{ $chu_de->chu_de_ten_vn }}</option>
+                        @else
+                            <option value="{{ $chu_de->chu_de_id }}" >{{ $chu_de->chu_de_ten_vn }}</option>
+                        @endif
+                            
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="san_pham_gia_ban" class="col-sm-2 col-form-label">Giá bán</label>
+                <label for="mau_sac_id" class="col-sm-2 col-form-label">Màu sắc</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control require-row tien-te" value="{{ $san_pham->san_pham_gia_ban }}" name="san_pham_gia_ban" id="san_pham_gia_ban">
+                    <select name="mau_sac_id[]"id="mau_sac_id" placeholder="Chọn màu sắc cho sản phẩm" multiple>
+                        @foreach($ds_mau_sac as $mau_sac)
+                        @if (in_array($mau_sac->mau_sac_id, $arr_mau_sac))
+                            <option value="{{ $mau_sac->mau_sac_id }}" selected="selected">{{ $mau_sac->mau_sac_ten_vn }}</option>
+                        @else
+                            <option value="{{ $mau_sac->mau_sac_id }}" >{{ $mau_sac->mau_sac_ten_vn }}</option>
+                        @endif
+                            
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="san_pham_mo_ta" class="col-sm-2 col-form-label">Mô tả sản phẩm</label>
+                <label for="mau_sac_id" class="col-sm-2 col-form-label">Kích thước</label>
                 <div class="col-sm-10">
-                    <!--<input type="text" class="form-control require-row" value="{{ old('san_pham_mo_ta') }}" name="san_pham_mo_ta" id="san_pham_mo_ta">-->
-                    <textarea type="text" id="san_pham_mo_ta" class="form-control require-row" name="san_pham_mo_ta">{{ $san_pham->san_pham_mo_ta }}</textarea>
+                    <select name="kich_thuoc_id[]"id="kich_thuoc_id" placeholder="Chọn kích thước cho sản phẩm" multiple>
+                        @foreach($ds_kich_thuoc as $kich_thuoc)
+                        @if (in_array($kich_thuoc->kich_thuoc_id, $arr_kich_thuoc))
+                            <option value="{{ $kich_thuoc->kich_thuoc_id }}" selected="selected">{{ $kich_thuoc->kich_thuoc_ten_vn }}</option>
+                        @else
+                            <option value="{{ $kich_thuoc->kich_thuoc_id }}" >{{ $kich_thuoc->kich_thuoc_ten_vn }}</option>
+                        @endif
+                            
+                        @endforeach
+                    </select>
                 </div>
             </div>
-            
-            
-            <div class="form-group row">
-                <label for="san_pham_trang_thai" class="col-sm-2 col-form-label">Trạng thái</label>
-                <div class="col-sm-10">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="san_pham_trang_thai" id="san_pham_trang_thai_hien_thi" value="1" checked>
-                        <label class="form-check-label" for="san_pham_trang_thai_hien_thi">
-                          Hiển thị
-                        </label>
-                      </div>
-                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="san_pham_trang_thai" id="san_pham_trang_thai_khong_hien_thi" value="2">
-                        <label class="form-check-label" for="san_pham_trang_thai_khong_hien_thi">
-                          Không hiển thị
-                        </label>
-                      </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="loai_san_pham_id" class="col-sm-2 col-form-label require-row">Loại sản phẩm</label>
-                <div class="col-sm-10">
-                    <select class="form-control" name="loai_san_pham_id" id="loai_san_pham_id">
-                    
-                    @foreach ($data as $k => $v)
-                        <option value="{{ $v->loai_san_pham_id }}">{{ $v->loai_san_pham_ten_vn }}</option>
-                    @endforeach
-                  </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="san_pham_hinh_anh" class="col-sm-2 col-form-label">Ảnh đại diện sản phẩm</label>
-                <div class="col-sm-10">
-                    <div class="file-loading">
-                        <input id="san_pham_hinh_anh" type="file" name="san_pham_hinh_anh">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="san_pham_hinh_anh_lien_quan" class="col-sm-2 col-form-label">Ảnh liên quan</label>
-                <div class="col-sm-10">
-                    <div class="file-loading">
-                        <input id="san_pham_hinh_anh_lien_quan" type="file" name="san_pham_hinh_anh_lien_quan[]" multiple>
-                    </div>
-                </div>
-            </div>
-            
             <!--end form-->
       </div>
       <div class="modal-footer">
           <button type="submit" class="btn btn-primary"><i class="fas fa-download"></i> Lưu</button>
+          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-undo-alt"></i> Trở về</button>-->
+          <a href="{{ route('sanpham.index') }}" class="btn btn-primary "><i class="fas fa-undo-alt"></i> Trở về</a>
       </div>
       </form>
     
@@ -126,6 +108,49 @@
 <script>
     
         $( document ).ready(function() { 
+            
+            
+            var  nha_cung_cap = new Choices('#nha_cung_cap', {
+                        removeItemButton: true,
+                        maxItemCount:5,
+                        searchResultLimit:5,
+                        renderChoiceLimit:5,
+                        loadingText: 'Đang tải...',
+                        noResultsText: 'Không tìm thấy thông tin',
+                        noChoicesText: 'Không còn thông tin để chọn',
+                        itemSelectText: 'Click vào để chọn',
+                }); 
+            var  chu_de_id = new Choices('#chu_de_id', {
+                        removeItemButton: true,
+                        maxItemCount:5,
+                        searchResultLimit:5,
+                        renderChoiceLimit:5,
+                        loadingText: 'Đang tải...',
+                        noResultsText: 'Không tìm thấy thông tin',
+                        noChoicesText: 'Không còn thông tin để chọn',
+                        itemSelectText: 'Click vào để chọn',
+                }); 
+            var  mau_sac_id = new Choices('#mau_sac_id', {
+                        removeItemButton: true,
+                        maxItemCount:5,
+                        searchResultLimit:5,
+                        renderChoiceLimit:5,
+                        loadingText: 'Đang tải...',
+                        noResultsText: 'Không tìm thấy thông tin',
+                        noChoicesText: 'Không còn thông tin để chọn',
+                        itemSelectText: 'Click vào để chọn',
+                }); 
+            var  kich_thuoc_id = new Choices('#kich_thuoc_id', {
+                        removeItemButton: true,
+                        maxItemCount:5,
+                        searchResultLimit:5,
+                        renderChoiceLimit:5,
+                        loadingText: 'Đang tải...',
+                        noResultsText: 'Không tìm thấy thông tin',
+                        noChoicesText: 'Không còn thông tin để chọn',
+                        itemSelectText: 'Click vào để chọn',
+                }); 
+            
             $('#san_pham_ma').attr('disabled', 'disabled');
             $('input[name=san_pham_trang_thai][value={{ $san_pham->san_pham_trang_thai }}]').prop('checked', 'checked');
             $("#loai_san_pham_id option[value={{ $san_pham->loai_san_pham_id }}]").attr("selected","selected");
@@ -253,7 +278,11 @@
             $('#modal').modal('show');
         }
         
-
+        
+        function prepareEdit(id, action){
+            ClearErrorMessage();
+        }
+        
         function ThucHienIn(){
             
         }

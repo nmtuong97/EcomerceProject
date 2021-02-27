@@ -54,7 +54,7 @@ class mausacController extends Controller
         Session::flash('sussecs','Sửa thành công!');
         return redirect()->route('mausac.index');
     }
-        public function destroy($id)
+    public function destroy($id)
     {
         $loai = mau_sac::find($id);
         $loai->delete();

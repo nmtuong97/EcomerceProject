@@ -38,6 +38,7 @@
                         <a class="collapse-item" href="{{ route('nhacungcap.index') }}">Nhà cung cấp</a>
                         <a class="collapse-item" href="{{ route('chude.index') }}">Chủ đề</a>
                         <a class="collapse-item" href="{{ route('mausac.index') }}">Màu sắc</a>
+                        <a class="collapse-item" href="{{ route('kichthuoc.index') }}">Kích thước</a>
                         <a class="collapse-item" href="{{ route('lydo.index') }}">Lý do</a>
                         <a class="collapse-item" href="{{ route('donvivanchuyen.index') }}">Đơn vị vận chuyển</a>
                     </div>
@@ -70,7 +71,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+<!--            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-list"></i>
@@ -87,14 +88,14 @@
                         <a class="collapse-item" href="blank.html">Blank Page</a>
                     </div>
                 </div>
-            </li>
+            </li>-->
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+<!--            <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                 <i class="fas fa-cogs"></i>
                     <span>Quản lý</span></a>
-            </li>
+            </li>-->
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

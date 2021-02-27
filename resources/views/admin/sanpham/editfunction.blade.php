@@ -112,9 +112,9 @@
             
             var  nha_cung_cap = new Choices('#nha_cung_cap', {
                         removeItemButton: true,
-                        maxItemCount:5,
-                        searchResultLimit:5,
-                        renderChoiceLimit:5,
+                        maxItemCount:100,
+                        searchResultLimit:100,
+                        renderChoiceLimit:100,
                         loadingText: 'Đang tải...',
                         noResultsText: 'Không tìm thấy thông tin',
                         noChoicesText: 'Không còn thông tin để chọn',
@@ -122,9 +122,9 @@
                 }); 
             var  chu_de_id = new Choices('#chu_de_id', {
                         removeItemButton: true,
-                        maxItemCount:5,
-                        searchResultLimit:5,
-                        renderChoiceLimit:5,
+                        maxItemCount:100,
+                        searchResultLimit:100,
+                        renderChoiceLimit:100,
                         loadingText: 'Đang tải...',
                         noResultsText: 'Không tìm thấy thông tin',
                         noChoicesText: 'Không còn thông tin để chọn',
@@ -132,9 +132,9 @@
                 }); 
             var  mau_sac_id = new Choices('#mau_sac_id', {
                         removeItemButton: true,
-                        maxItemCount:5,
-                        searchResultLimit:5,
-                        renderChoiceLimit:5,
+                        maxItemCount:100,
+                        searchResultLimit:100,
+                        renderChoiceLimit:100,
                         loadingText: 'Đang tải...',
                         noResultsText: 'Không tìm thấy thông tin',
                         noChoicesText: 'Không còn thông tin để chọn',
@@ -142,9 +142,9 @@
                 }); 
             var  kich_thuoc_id = new Choices('#kich_thuoc_id', {
                         removeItemButton: true,
-                        maxItemCount:5,
-                        searchResultLimit:5,
-                        renderChoiceLimit:5,
+                        maxItemCount:100,
+                        searchResultLimit:100,
+                        renderChoiceLimit:100,
                         loadingText: 'Đang tải...',
                         noResultsText: 'Không tìm thấy thông tin',
                         noChoicesText: 'Không còn thông tin để chọn',

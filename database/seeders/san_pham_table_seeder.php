@@ -67,15 +67,56 @@ class san_pham_table_seeder extends Seeder
               )
         );
         $arr_obj_ha = Array();
+        $id = 1;
         foreach ($arr_hinh_anh_sp as $id_sp => $value) {
             foreach ($value as $key2 => $ten_hinh) {
                 $arr_obj_ha[] = Array(
+                    'san_pham_hinh_anh_id' => $id,
                     'san_pham_id' => $id_sp,
                     'san_pham_hinh_anh_ten' => $ten_hinh
                 );
+                $id++;
             }
         }
         DB::table('san_pham_hinh_anh')->insert($arr_obj_ha);
+        
+        $arr_mssp = Array(
+            1 => [1,2,3,5,6],
+            2 => [2,4,6,8,9],
+            3 => [1,2,3,7,9],
+            4 => [2,4,5,6,8],
+            5 => [2,4,6,8,10],
+        );
+        $arr_ob_mssp = Array();
+        foreach ($arr_mssp as $id_sp => $value) {
+            foreach ($value as $k => $mau_sac_id) {
+                $arr_ob_mssp[] = Array(
+                    'mau_sac_id' => $mau_sac_id,
+                    'san_pham_id' => $id_sp,
+                );
+            }
+        }
+        DB::table('mau_sac_san_pham')->insert($arr_ob_mssp);
+        
+        $arr_ktsp = Array(
+            1 => [1,2,3,4,5],
+            2 => [3,6,7,4,5],
+            3 => [5,4,3,2,8],
+            4 => [2,4,6,7,9],
+            5 => [3,6,8,5,7],
+        );
+        $arr_ob_ktsp = Array();
+        foreach ($arr_ktsp as $id_sp => $value) {
+            foreach ($value as $k => $kich_thuoc_id) {
+                $arr_ob_ktsp[] = Array(
+                    'kich_thuoc_id' => $kich_thuoc_id,
+                    'san_pham_id' => $id_sp,
+                );
+            }
+        }
+         DB::table('kich_thuoc_san_pham')->insert($arr_ob_ktsp);
+         
+         
         
     }
 }

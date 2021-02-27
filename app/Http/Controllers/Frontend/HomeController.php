@@ -190,7 +190,7 @@ class HomeController extends Controller
             from gio_hang a
             where a.khach_hang_id = :idkh and a.san_pham_id = :spid
             
-        ",['idkh' => $idkh, 'spid' =>]);
+        ",['idkh' => $idkh, 'spid' => '']);
         
         dd($infokh);die;
     }

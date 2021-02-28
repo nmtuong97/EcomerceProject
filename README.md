@@ -45,5 +45,4 @@ nhanvien@gmail.com / 123456
 Tài khoản Khách hàng:
 khachhang@gmail.com / 123456
 
-- Nếu là tài khoản nhân viên thì sẽ hiển thị nút Quản Lý để vào trang quản lý của admin 
-
+- Nếu là tài khoản nhân viên thì hệ thống sẽ tự động chuyển vào trang quản lý
